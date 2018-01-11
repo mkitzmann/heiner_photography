@@ -1,18 +1,15 @@
-<html>
-<head></head>
-<body>
+{% extends 'base.html.twig' %}
 
-<div style="font-weight: bold">
-    hallo mein name ist {{ name }}
-</div>
+{% block body %}
+    <div style="font-weight: bold">
+        hallo mein name ist {{ name }}
+    </div>
 
-<ul>
-    {% for customer in customers %}
-        <li>
-            {{ customer.id }}
-        </li>
-    {% endfor %}
-</ul>
-
-</body>
-</html>
+    <ul>
+        {% for customer in customers %}
+            <li>
+                {{ customer.id }} {{ customer.firstName }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

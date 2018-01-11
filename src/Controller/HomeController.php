@@ -2,20 +2,24 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Customer;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeController extends AbstractController
+class HomeController extends Controller
 {
 
     public function indexAction(Request $request)
     {
         $name = $request->get('name', 'Ich habe keinen namen');
 
+        $customerRepo = $this->getDoctrine()->getRepository(Customer::class);
+        $customers = $customerRepo->findAll();
+
         return $this->render('home/index.html.twig', [
             'name' => $name,
-            'customers' => [],
+            'customers' => $customers
         ]);
     }
 
