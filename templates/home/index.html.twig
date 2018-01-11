@@ -1,0 +1,18 @@
+<html>
+<head></head>
+<body>
+
+<div style="font-weight: bold">
+    hallo mein name ist {{ name }}
+</div>
+
+<ul>
+    {% for customer in customers %}
+        <li>
+            {{ customer.id }}
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
