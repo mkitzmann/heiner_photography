@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <div class="overview-container">
+            <h1>Adding a new project</h1>
+
+            {{ form_start(form) }}
+            {# ... #}
+
+            {{ form_row(form.thumbnail) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock %}

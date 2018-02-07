@@ -1,3 +1,91 @@
+* {
+    //border: 1px solid red;
+    text-decoration: none;
+    color: black;
+}
+
+html,
 body {
-    background: red;
+    background: white;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-box;
+    box-orient: horizontal;
+}
+.sidebar {
+    width: 25vw;
+    min-width: 250px;
+    max-width:350px;
+    -webkit-box-flex:  0;
+    -moz-box-flex:  0;
+    -ms-box-flex:  0;
+    box-flex: 0;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+}
+
+.content {
+    -ms-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -ms-box-flex: 1;
+    box-flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.navigation {
+
+}
+
+.image-container{
+
+}
+
+.overview-container{
+    max-width: 1000px;
+}
+
+.overview-container img{
+    padding: 0px;
+    margin: 8px 16px 8px 0;
+}
+
+a.logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+span.bold {
+    font-weight: 700;
+}
+
+nav {
+    font-weight: 200;
+    margin-top: 30px;
+}
+
+nav a{
+    color: #000;
+    display: block;
+    padding-bottom: 20px;
+}
+
+nav a.active {
+    font-weight: 500;
 }

@@ -2,12 +2,32 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="stylesheet" href="/css/main.css"/>
+        <title>{% block title %}Heiner Leiska | Photography{% endblock %}</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/css/main.css"/>
+        {% endblock %}
+
+        <link href="https://fonts.googleapis.com/css?family=Abel|Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,700" rel="stylesheet">
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div class="container">
+
+    {% block sidebar %}
+        <div class="sidebar">
+            <div class="navigation">
+                <a href="{{ path('IndexRoute') }}" class="logo">HEINER <span class="bold">LEISKA</span></a>
+                <nav class="main">
+                    <a href="{{ path('OverviewRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'OverviewRoute' %} class="active"{% endif %}>Photography</a>
+                    <a href="{{ path('AboutRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'AboutRoute' %} class="active"{% endif %}>About</a>
+                </nav>
+            </div>
+        </div>
+    {% endblock %}
+
+        {% block content %}{% endblock %}
         {% block javascripts %}{% endblock %}
+    </div>
     </body>
 </html>

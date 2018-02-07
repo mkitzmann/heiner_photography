@@ -23,8 +23,20 @@ class HomeController extends Controller
         ]);
     }
 
-    public function klausAction(Request $request, int $customerId)
+    public function OverviewAction()
     {
-        return new Response("Deine customer id ist " . $customerId);
+        return $this->render('home/overview.html.twig');
     }
+
+    public function AboutAction()
+    {
+        return $this->render('home/about.html.twig');
+    }
+
+    public function GalleryAction(Request $request, int $projectId)
+    {
+        return $this->render('home/gallery.html.twig');
+    }
+
+
 }

@@ -1,8 +1,24 @@
-index:
+IndexRoute:
     path: /
     defaults: { _controller: 'App\Controller\HomeController::indexAction' }
 
 
-meineroute:
-    path: /kunden/{customerId}
-    defaults: { _controller: 'App\Controller\HomeController::klausAction' }
+OverviewRoute:
+    path: /photography/
+    defaults: { _controller: 'App\Controller\HomeController::OverviewAction' }
+
+AboutRoute:
+    path: /about/
+    defaults: { _controller: 'App\Controller\HomeController::AboutAction' }
+
+GalleryRoute:
+        path: /photography/{projectId}
+        defaults: { _controller: 'App\Controller\HomeController::GalleryAction' }
+
+AdminOverviewRoute:
+    path: /admin/overview
+    defaults: { _controller: 'App\Controller\ProjectController::new' }
+
+AdminIndexRoute:
+        path: /admin/index
+        defaults: { _controller: 'App\Controller\ProjectController::index' }
