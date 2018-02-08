@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity()
  */
-class Customer
+class Photos
 {
 
     /**
@@ -23,20 +23,19 @@ class Customer
      * @ORM\Column(type="string")
      * @var string
      */
-    private $firstName;
+    private $title;
 
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-    private $lastName;
-
+    private $description;
 
     /**
      * @ORM\Column(type="string")
      * @var string
      */
-    private $address;
+    private $image;
 
     /**
      * @return int
@@ -49,50 +48,53 @@ class Customer
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getTitle()
     {
-        return $this->firstName;
+        return $this->title;
     }
 
     /**
-     * @param string $firstName
+     * @param string $title
      */
-    public function setFirstName(string $firstName)
+    public function setTitle($title)
     {
-        $this->firstName = $firstName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName(): string
-    {
-        return $this->lastName;
-    }
-
-    /**
-     * @param string $lastName
-     */
-    public function setLastName(string $lastName)
-    {
-        $this->lastName = $lastName;
+        $this->title = $title;
     }
 
     /**
      * @return string
      */
-    public function getAddress(): string
+    public function getDescription()
     {
-        return $this->address;
+        return $this->description;
     }
 
     /**
-     * @param string $address
+     * @param string $description
      */
-    public function setAddress(string $address)
+    public function setDescription($description)
     {
-        $this->address = $address;
+        $this->title = $description;
     }
+
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+    }
+
 
 
 }

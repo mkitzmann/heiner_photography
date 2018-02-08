@@ -44,10 +44,10 @@ class ProjectController extends Controller
             // actually executes the queries (i.e. the INSERT query)
             $em->flush();
 
-            return $this->redirect($this->generateUrl('OverviewRoute'));
+            return $this->redirect($this->generateUrl('ProjectsRoute'));
         }
 
-        return $this->render('admin/adminOverview.html.twig', array(
+        return $this->render('admin/adminProjects.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -59,7 +59,7 @@ class ProjectController extends Controller
 
         //var_dump($projects);
 
-        return $this->render('home/overview.html.twig', [
+        return $this->render('home/projects.html.twig', [
             'projects' => $projects,
         ]);
     }

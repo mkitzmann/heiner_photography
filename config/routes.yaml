@@ -3,7 +3,7 @@ IndexRoute:
     defaults: { _controller: 'App\Controller\HomeController::indexAction' }
 
 
-OverviewRoute:
+ProjectsRoute:
     path: /photography/
     defaults: { _controller: 'App\Controller\ProjectController::view' }
 
@@ -12,13 +12,13 @@ AboutRoute:
     defaults: { _controller: 'App\Controller\HomeController::AboutAction' }
 
 GalleryRoute:
-        path: /photography/{projectId}
-        defaults: { _controller: 'App\Controller\HomeController::GalleryAction' }
+        path: /photography/{projectTitle}
+        defaults: { _controller: 'App\Controller\GalleryController::GalleryAction' }
 
-AdminOverviewRoute:
-    path: /admin/overview
+AdminProjectsRoute:
+    path: /admin/projects
     defaults: { _controller: 'App\Controller\ProjectController::new' }
 
-AdminIndexRoute:
-        path: /admin/index
-        defaults: { _controller: 'App\Controller\ProjectController::index' }
+AdminGalleryRoute:
+        path: /admin/gallery
+        defaults: { _controller: 'App\Controller\galleryController::new' }
