@@ -3,6 +3,7 @@
 parameters:
     thumbnail_directory: '%kernel.project_dir%/public/img/thumbnails'
     photo_directory: '%kernel.project_dir%/public/img/photos'
+    locale: 'en'
 
 services:
     # default configuration for services in *this* file

@@ -20,16 +20,12 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $project->getThumbnail();
-
-            $title = $project->getTitle();
 
             $fileName = $fileUploader->upload($file);
 
             $project->setThumbnail($fileName);
-            $project->setTitle($title);
 
             $em->persist($project);
 

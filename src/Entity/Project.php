@@ -72,6 +72,9 @@ class Project
 
     }
 
+    public function __toInt() {
+        return $this->getTitle();
+    }
 
 
 }

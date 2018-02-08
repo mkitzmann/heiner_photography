@@ -29,7 +29,13 @@ class Photo
      * @ORM\Column(type="string")
      * @var string
      */
-    private $description;
+    private $text;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $project;
 
     /**
      * @ORM\Column(type="string")
@@ -56,7 +62,7 @@ class Photo
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle(string $title)
     {
         $this->title = $title;
     }
@@ -64,19 +70,34 @@ class Photo
     /**
      * @return string
      */
-    public function getDescription()
+    public function getText()
     {
-        return $this->description;
+        return $this->text;
     }
 
     /**
-     * @param string $description
+     * @param string $text
      */
-    public function setDescription($description)
+    public function setText(string $text)
     {
-        $this->title = $description;
+        $this->text = $text;
     }
 
+    /**
+     * @return int
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * @param int $project
+     */
+    public function setProject(Project $project = null)
+    {
+        $this->project = $project;
+    }
 
     /**
      * @return string
@@ -92,8 +113,8 @@ class Photo
     public function setImage($image)
     {
         $this->image = $image;
-
     }
+
 
 
 

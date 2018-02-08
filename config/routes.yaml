@@ -19,6 +19,6 @@ AdminProjectsRoute:
     path: /admin/projects
     defaults: { _controller: 'App\Controller\ProjectController::new' }
 
-AdminGalleryRoute:
+AdminPhotosRoute:
         path: /admin/photos
         defaults: { _controller: 'App\Controller\PhotoController::new' }
