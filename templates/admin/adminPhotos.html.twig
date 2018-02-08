@@ -3,11 +3,12 @@
 {% block content %}
     <div class="content">
         <div class="overview-container">
-            <h1>Adding a new project</h1>
+            <h1>Adding a new photo</h1>
 
             {{ form_start(form) }}
             {{ form_row(form.title) }}
-            {{ form_row(form.thumbnail) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.image) }}
             {{ form_end(form) }}
         </div>
     </div>

@@ -25,5 +25,4 @@ class HomeController extends Controller
         return $this->render('home/about.html.twig');
     }
 
-
 }

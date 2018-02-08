@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     thumbnail_directory: '%kernel.project_dir%/public/img/thumbnails'
+    photo_directory: '%kernel.project_dir%/public/img/photos'
 
 services:
     # default configuration for services in *this* file
@@ -26,3 +27,7 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDir: '%kernel.project_dir%/public/img/thumbnails'
