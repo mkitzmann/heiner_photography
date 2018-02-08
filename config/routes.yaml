@@ -5,7 +5,7 @@ IndexRoute:
 
 OverviewRoute:
     path: /photography/
-    defaults: { _controller: 'App\Controller\HomeController::OverviewAction' }
+    defaults: { _controller: 'App\Controller\ProjectController::view' }
 
 AboutRoute:
     path: /about/

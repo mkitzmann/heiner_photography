@@ -3,12 +3,15 @@
 {% block content %}
     <div class="content">
         <div class="overview-container">
-            <img src="../img/LEISKA_0609c33_thumb.jpg" class="overviewImage">
-            <a href="{{ path('GalleryRoute', {'projectId': 2}) }}"><img src="../img/LEISKA_3276-02_thumb.jpg" class="overviewImage"></a>
-            <img src="../img/LEISKA_200509e03_thumb.jpg" class="overviewImage">
-            <img src="../img/LEISKA_200609c38_thumb.jpg" class="overviewImage">
-            <img src="../img/LEISKA_200803e14_thumb.jpg" class="overviewImage">
-            <img src="../img/LEISKA_200806d03_thumb.jpg" class="overviewImage">
+            {% for project in projects %}
+                <a href="">
+                    {{ project.title }}
+                    <img src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">
+                </a>
+            {% endfor %}
+
+
+
         </div>
     </div>
 

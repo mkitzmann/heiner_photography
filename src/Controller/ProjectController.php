@@ -10,25 +10,6 @@ use App\Form\ProjectType;
 
 class ProjectController extends Controller
 {
-    public function index()
-    {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to your action: index(EntityManagerInterface $em)
-        $em = $this->getDoctrine()->getManager();
-
-        $project = new Project();
-        $project->setTitle('Test Project');
-        $project->setThumbnail('test.jpg');
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $em->persist($project);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $em->flush();
-
-        return new Response('Saved new project with id '.$project->getId());
-    }
-
     public function new(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
@@ -69,6 +50,18 @@ class ProjectController extends Controller
         return $this->render('admin/adminOverview.html.twig', array(
             'form' => $form->createView(),
         ));
+    }
+
+    public function view()
+    {
+        $projectRepo = $this->getDoctrine()->getRepository(Project::class);
+        $projects = $projectRepo->findAll();
+
+        //var_dump($projects);
+
+        return $this->render('home/overview.html.twig', [
+            'projects' => $projects,
+        ]);
     }
 
     /**
