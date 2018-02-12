@@ -32,8 +32,8 @@ class Photo
     private $text;
 
     /**
-     * @ORM\Column(type="integer")
-     * @var int
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="photos")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $project;
 

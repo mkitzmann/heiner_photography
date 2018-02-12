@@ -11,7 +11,7 @@ use App\Form\ProjectType;
 
 class ProjectController extends Controller
 {
-    public function new(Request $request, FileUploader $fileUploader)
+    public function newProject(Request $request, FileUploader $fileUploader)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -20,15 +20,14 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $project->getThumbnail();
-
-            $fileName = $fileUploader->upload($file);
-
+            $directory = $this->getParameter('thumbnail_directory');
+            $fileName = $fileUploader->upload($file, $directory);
             $project->setThumbnail($fileName);
 
             $em->persist($project);
-
             $em->flush();
 
             return $this->redirect($this->generateUrl('ProjectsRoute'));
@@ -39,16 +38,26 @@ class ProjectController extends Controller
         ));
     }
 
-    public function view()
+    public function viewProjects()
     {
         $projectRepo = $this->getDoctrine()->getRepository(Project::class);
         $projects = $projectRepo->findAll();
 
-        //var_dump($projects);
-
         return $this->render('home/projects.html.twig', [
             'projects' => $projects,
         ]);
+    }
+
+    public function ViewGallery(Request $request, string $projectTitle)
+    {
+        $project = $this->getDoctrine()
+            ->getRepository(Project::class)
+            ->findOneBy(['title' => $projectTitle]);
+
+        $photos = $project->getPhotos();
+
+        return $this->render('home/gallery.html.twig',array(
+            'photos' => $photos));
     }
 
 }

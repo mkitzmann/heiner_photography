@@ -5,13 +5,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
+use App\Service\FileUploader;
 use App\Entity\Photo;
+use App\Entity\Project;
 use App\Form\PhotoType;
-
 
 class PhotoController extends Controller
 {
-    public function new(Request $request)
+    public function newPhoto(Request $request, FileUploader $fileUploader)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -21,30 +22,13 @@ class PhotoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-
-
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $photo->getImage();
-
-
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-            $file->move(
-                $this->getParameter('photo_directory'),
-                $fileName
-            );
-
+            $directory = $this->getParameter('photo_directory');
+            $fileName = $fileUploader->upload($file, $directory);
             $photo->setImage($fileName);
 
-            //$project = $photo->getProject();
-            //$project = $project->id;
-            //var_dump($photo);
-            //$photo->setProject($project);
-
-
-
             $em->persist($photo);
-
             $em->flush();
 
             return $this->redirect($this->generateUrl('ProjectsRoute'));
@@ -54,19 +38,7 @@ class PhotoController extends Controller
             'form' => $form->createView(),
         ));
     }
-    
-    public function GalleryAction(Request $request, string $projectTitle)
-    {
-        return $this->render('home/gallery.html.twig',[
-            'projectTitle' => $projectTitle
-        ]);
-    }
 
-    /**
-     * @return string
-     */
-    public function generateUniqueFileName()
-    {
-        return md5(uniqid());
-    }
+
+    
 }

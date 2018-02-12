@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity()
@@ -30,6 +31,17 @@ class Project
      * @var string
      */
     private $thumbnail;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="project")
+     */
+    private $photos;
+
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -72,8 +84,18 @@ class Project
 
     }
 
-    public function __toInt() {
-        return $this->getTitle();
+    /**
+     * @return Collection|Product[]
+     */
+    public function getPhotos()
+    {
+        return $this->photos;
+    }
+
+
+    public function __toString():string
+    {
+        return $this->getId();
     }
 
 

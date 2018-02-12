@@ -19,7 +19,7 @@
             <div class="navigation">
                 <a href="{{ path('IndexRoute') }}" class="logo">HEINER <span class="bold">LEISKA</span></a>
                 <nav class="main">
-                    <a href="{{ path('ProjectsRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'OverviewRoute' %} class="active"{% endif %}>Photography</a>
+                    <a href="{{ path('ProjectsRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'ProjectsRoute' or 'GalleryRoute' %} class="active"{% endif %}>Photography</a>
                     <a href="{{ path('AboutRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'AboutRoute' %} class="active"{% endif %}>About</a>
                 </nav>
             </div>
