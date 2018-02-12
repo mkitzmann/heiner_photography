@@ -6,12 +6,17 @@
 
         {% block stylesheets %}
             <link rel="stylesheet" href="/css/main.css"/>
+            <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
         {% endblock %}
 
+        {% block fonts %}
         <link href="https://fonts.googleapis.com/css?family=Abel|Open+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,500,700" rel="stylesheet">
+        {% endblock %}
+
     </head>
     <body>
+
     <div class="container">
 
     {% block sidebar %}
@@ -19,15 +24,32 @@
             <div class="navigation">
                 <a href="{{ path('IndexRoute') }}" class="logo">HEINER <span class="bold">LEISKA</span></a>
                 <nav class="main">
-                    <a href="{{ path('ProjectsRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'ProjectsRoute' or 'GalleryRoute' %} class="active"{% endif %}>Photography</a>
-                    <a href="{{ path('AboutRoute') }}" {% if app.request.attributes.get( '_route' ) starts with 'AboutRoute' %} class="active"{% endif %}>About</a>
+                    <a href="
+                        {{ path('ProjectsRoute') }}"
+                            {% if app.request.attributes.get( '_route' )
+                                starts with 'ProjectsRoute' or 'GalleryRoute' %} class="active"
+                            {% endif %}>
+                        Photography</a>
+                    <a href="
+                        {{ path('AboutRoute') }}"
+                            {% if app.request.attributes.get( '_route' )
+                                starts with 'AboutRoute' %} class="active"
+                            {% endif %}>
+                        About</a>
                 </nav>
             </div>
         </div>
     {% endblock %}
 
         {% block content %}{% endblock %}
-        {% block javascripts %}{% endblock %}
     </div>
+
+    {% block javascripts %}
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script>
+        <script type="text/javascript" src="/js/main.js"></script>
+    {% endblock %}
+
     </body>
 </html>
