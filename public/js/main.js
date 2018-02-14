@@ -1,11 +1,27 @@
-$(document).ready(function(){
-    $('.gallery-container').slick({
-        accessibility: true,
-        infinite: true,
-        lazyLoad: 'progressive',
-        adaptiveHeight: false,
-        fade: true,
-        cssEase: 'ease-in-out',
-        speed: 2000,
+$(document).ready(function() {
+
+    $('img').css('display', 'none');
+
+    $('img').fadeIn(2000);
+
+
+
+    $('.gallery-next').click(function(event) {
+
+        event.preventDefault();
+
+        newLocation = this.href;
+
+        $('img').fadeOut(300, newpage);
+
+    });
+
+
+
+    function newpage() {
+
+        window.location = newLocation;
+
+    }
+
 });
-})

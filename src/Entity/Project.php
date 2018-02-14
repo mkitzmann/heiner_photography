@@ -27,6 +27,13 @@ class Project
     private $title;
 
     /**
+     * @ORM\Column(length=128, unique=true)
+     * @var string
+     */
+    private $slug;
+
+
+    /**
      * @ORM\Column(type="string")
      * @var string
      */
@@ -65,6 +72,22 @@ class Project
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 
     /**

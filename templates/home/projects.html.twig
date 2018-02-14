@@ -4,8 +4,7 @@
     <div class="content">
         <div class="overview-container">
             {% for project in projects %}
-                <a href="{{ path('GalleryRoute', {'projectTitle': project.title}) }}">
-                    {{ project.title }}
+                <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
                     <img src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">
                 </a>
             {% endfor %}

@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -8,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use App\Service\FileUploader;
 use App\Entity\Project;
 use App\Form\ProjectType;
+use Cocur\Slugify\Slugify;
 
 class ProjectController extends Controller
 {
@@ -26,6 +28,10 @@ class ProjectController extends Controller
             $directory = $this->getParameter('thumbnail_directory');
             $fileName = $fileUploader->upload($file, $directory);
             $project->setThumbnail($fileName);
+
+            $title = $project->getTitle();
+            $slugify = new Slugify();
+            $project->setSlug($slugify->slugify($title));
 
             $em->persist($project);
             $em->flush();
@@ -52,12 +58,36 @@ class ProjectController extends Controller
     {
         $project = $this->getDoctrine()
             ->getRepository(Project::class)
-            ->findOneBy(['title' => $projectTitle]);
+            ->findOneBy(['slug' => $projectTitle]);
 
+        $photo = $project->getPhotos();
+
+
+        return $this->render('home/photo.html.twig',array(
+            'photo' => $photo[0],
+            'nextphoto' => $photo[1]));
+    }
+
+    public function ViewPhoto(Request $request)
+    {
+        $projectTitle = $request->get('projectTitle');
+        $photoTitle = $request->get('photoTitle');
+
+        $photo = $this->getDoctrine()
+            ->getRepository(Photo::class)
+            ->findOneBy(['slug' => $photoTitle]);
+
+
+        $project = $this->getDoctrine()
+            ->getRepository(Project::class)
+            ->findOneBy(['slug' => $projectTitle]);
+
+        //dump($project);
         $photos = $project->getPhotos();
 
-        return $this->render('home/gallery.html.twig',array(
-            'photos' => $photos));
+        return $this->render('home/photo.html.twig',array(
+            'photo' => $photo,
+            'nextphoto' => $photos[0]));
     }
 
 }

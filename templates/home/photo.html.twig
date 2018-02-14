@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="content">
+        <div class="gallery-container">
+            <a href="1" class="gallery-prev"></a>
+            <a href="water/{{ nextphoto.slug }}" class="gallery-next"></a>
+            <img src="{{ asset('img/photos/' ~ photo.image) }}"/>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block sideinfo %}
+    <div class="sideinfo">
+        <a href="">{{ photo.title }}<br>01/12</a>
+    </div>
+{% endblock %}

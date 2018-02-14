@@ -9,6 +9,7 @@ use App\Service\FileUploader;
 use App\Entity\Photo;
 use App\Entity\Project;
 use App\Form\PhotoType;
+use Cocur\Slugify\Slugify;
 
 class PhotoController extends Controller
 {
@@ -27,6 +28,10 @@ class PhotoController extends Controller
             $directory = $this->getParameter('photo_directory');
             $fileName = $fileUploader->upload($file, $directory);
             $photo->setImage($fileName);
+
+            $title = $photo->getTitle();
+            $slugify = new Slugify();
+            $photo->setSlug($slugify->slugify($title));
 
             $em->persist($photo);
             $em->flush();

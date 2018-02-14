@@ -15,6 +15,10 @@ GalleryRoute:
         path: /photography/{projectTitle}
         defaults: { _controller: 'App\Controller\ProjectController::ViewGallery' }
 
+PhotoRoute:
+        path: /photography/{projectTitle}/{photoTitle}
+        defaults: { _controller: 'App\Controller\ProjectController::ViewPhoto' }
+
 AdminProjectsRoute:
     path: /admin/projects
     defaults: { _controller: 'App\Controller\ProjectController::newProject' }
