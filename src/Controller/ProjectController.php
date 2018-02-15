@@ -68,26 +68,4 @@ class ProjectController extends Controller
             'nextphoto' => $photo[1]));
     }
 
-    public function ViewPhoto(Request $request)
-    {
-        $projectTitle = $request->get('projectTitle');
-        $photoTitle = $request->get('photoTitle');
-
-        $photo = $this->getDoctrine()
-            ->getRepository(Photo::class)
-            ->findOneBy(['slug' => $photoTitle]);
-
-
-        $project = $this->getDoctrine()
-            ->getRepository(Project::class)
-            ->findOneBy(['slug' => $projectTitle]);
-
-        //dump($project);
-        $photos = $project->getPhotos();
-
-        return $this->render('home/photo.html.twig',array(
-            'photo' => $photo,
-            'nextphoto' => $photos[0]));
-    }
-
 }

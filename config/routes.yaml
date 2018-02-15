@@ -13,11 +13,11 @@ AboutRoute:
 
 GalleryRoute:
         path: /photography/{projectTitle}
-        defaults: { _controller: 'App\Controller\ProjectController::ViewGallery' }
+        defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
 
 PhotoRoute:
         path: /photography/{projectTitle}/{photoTitle}
-        defaults: { _controller: 'App\Controller\ProjectController::ViewPhoto' }
+        defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
 
 AdminProjectsRoute:
     path: /admin/projects

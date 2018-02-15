@@ -42,6 +42,7 @@ body {
     margin-top: 250px;
 }
 
+
 .sideinfo a{
     color: #bbb;
 }
@@ -65,18 +66,14 @@ body {
     margin: 8px 16px 8px 0;
 }
 
+/*
+* === GALLERY ===
+*/
+
 .gallery-container{
     width: 1000px;
     position: relative;
     text-align: center;
-
-
-
-
-}
-
-.gallery-container img{
-
 }
 
 a.gallery-prev {
@@ -93,6 +90,11 @@ a.gallery-next {
     right: 0px;
     cursor: e-resize;
 }
+
+
+/*
+* === NAVIGATION ===
+*/
 
 a.logo {
     font-family: 'Montserrat', sans-serif;
@@ -120,29 +122,95 @@ nav a.active {
     font-weight: 500;
 }
 
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+/*
+* === OVERLAY ===
+*/
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+    transition: opacity 1000ms;
+    visibility: hidden;
+    opacity: 0;
+    z-index: 1;
+}
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+    z-index: 1;
 }
 
-/* Firefox < 16 */
-@-moz-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.popup {
+    margin: 50vh auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 0px;
+    width: 30vw;
+    position: relative;
+    transition: all 2s ease-in-out;
+    font-family: 'Montserrat', sans-serif;
+    -webkit-box-shadow: 0px 0px 60px 2px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0px 60px 2px rgba(0,0,0,0.2);
+    box-shadow: 0px 0px 60px 2px rgba(0,0,0,0.2);
+    z-index: 1;
 }
 
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.popup h2 {
+    margin: 5px 0;
+    color: #333;
+    font-weight: 400;
+    font-size: 1.2em;
 }
 
-/* Internet Explorer */
-@-ms-keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+.popup h3 {
+    margin-top: 0;
+    color: #333;
+    font-weight: 400;
+    font-size: 1em;
 }
 
-/* Opera < 12.1 */
-@-o-keyframes fadein {
-    from { opacity: 0; }
+.overlay .close-overlay {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    width: 100%;
+    height: 100%;
+    cursor: alias;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    transition: all 200ms;
+    font-size: 1.5em;
+    text-decoration: none;
+    color: #333;
+}
+.popup .close:hover {
+    color: #999;
+}
+.popup .popup-content {
+    max-height: 30%;
+    overflow: auto;
+    font-weight: 200;
+    font-size: 1em;
+}
+
+.popup .popup-price {
+    width: 100%;
+    margin-top: 20px;
+    max-height: 30%;
+    overflow: auto;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.popup .popup-price div.right{
+    width: 100%;
+    text-align: right;
+}

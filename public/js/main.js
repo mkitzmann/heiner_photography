@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     $('img').css('display', 'none');
 
-    $('img').fadeIn(2000);
+    $('img').fadeIn(1000);
 
 
 

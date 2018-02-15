@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\PhotoRepository"))
  */
 class Photo
 {
@@ -39,11 +39,40 @@ class Photo
     private $text;
 
     /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $location;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $year;
+
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $priceDescription;
+
+    /**
+     * @ORM\Column(type="float")
+     * @var float
+     */
+    private $price;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="photos")
      * @ORM\JoinColumn(nullable=true)
      */
     private $project;
 
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $position;
 
     /**
      * @ORM\Column(type="string")
@@ -100,6 +129,72 @@ class Photo
     }
 
     /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param string $location
+     */
+    public function setLocation(string $location)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return int
+     */
+    public function getYear()
+    {
+        return $this->year;
+    }
+
+    /**
+     * @param int $year
+     */
+    public function setYear(int $year)
+    {
+        $this->year = $year;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPriceDescription()
+    {
+        return $this->priceDescription;
+    }
+
+    /**
+     * @param string $priceDescription
+     */
+    public function setPriceDescription(string $priceDescription)
+    {
+        $this->priceDescription = $priceDescription;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param float $price
+     */
+    public function setPrice(float $price)
+    {
+        $this->price = $price;
+    }
+
+
+
+    /**
      * @param string $text
      */
     public function setText(string $text)
@@ -122,6 +217,23 @@ class Photo
     {
         $this->project = $project;
     }
+
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param string $position
+     */
+    public function setPosition(string $position)
+    {
+        $this->position = $position;
+    }
+
 
     /**
      * @return string

@@ -3,16 +3,32 @@
 {% block content %}
     <div class="content">
         <div class="gallery-container">
-            <a href="1" class="gallery-prev"></a>
-            <a href="water/{{ nextphoto.slug }}" class="gallery-next"></a>
+            <a href="{{ path('ProjectsRoute') }}{{ project }}/{{ prevPhoto.slug }}" class="gallery-prev"></a>
+            <a href="{{ path('ProjectsRoute') }}{{ project }}/{{ nextphoto.slug }}" class="gallery-next"></a>
             <img src="{{ asset('img/photos/' ~ photo.image) }}"/>
         </div>
+
+        <div id="info" class="overlay">
+            <a class="close-overlay" href="#"></a>
+            <div class="popup">
+                <h2>{{ photo.title }}</h2>
+                <h3>{{ photo.location }} | {{ photo.year }}</h3>
+                <a class="close" href="#">&times;</a>
+                <div class="popup-content">
+                    {{ photo.text }}
+                </div>
+                <div class="popup-price">
+                    {{ photo.priceDescription }}<div class="right">{{ photo.price }} €</div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}
 
 {% block sideinfo %}
     <div class="sideinfo">
-        <a href="">{{ photo.title }}<br>01/12</a>
+        <a class="button" href="#info">{{ photo.title }}<br>01/12</a>
     </div>
 {% endblock %}
