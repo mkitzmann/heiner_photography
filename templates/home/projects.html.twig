@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="content">
-        <div class="image-container">
+    <div class="content" id="overview">
+        <div class="container" id="overview">
             {% for project in projects %}
                 <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
                     <img  class="grid" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">

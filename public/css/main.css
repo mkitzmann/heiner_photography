@@ -22,7 +22,7 @@ body {
     box-sizing: border-box;
 }
 
-.container {
+.global {
     display: flex;
     height: 100%;
     width: 100%;
@@ -58,25 +58,31 @@ body {
 }
 
 .content {
-   border: 1px solid blue;
- //   position:relative;
+//border: 1px solid blue;
+//   position:relative;
+    margin-left: 300px;
+    margin-right: 3vw;
+    max-height: 100%;
+    overflow: auto;
     -ms-flex: 1;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -ms-box-flex: 1;
     box-flex: 1;
     display: flex;
-    align-items: center;
-    margin-left: 300px;
-    margin-right: 3vw;
-    max-height: 100%;
 }
 
-.image-container{
-    position: relative;
-    border: 1px solid red;
-    width: 1000px;
+.content#single{
+    align-items: center;
+}
 
+.content#overview{
+    align-items: center;
+}
+
+.container{
+    position: relative;
+    width: 1000px;
     text-align: center;
 }
 
@@ -253,21 +259,75 @@ nav a.active {
         height: 150px;
         width: 100vw;
         padding-left: 3vw;
+        padding-top: 3vh;
+        z-index: 1;
     }
     .content{
-        margin-left: 3vw;
-        margin-top: 150px;
-        align-items: flex-start;
+        margin: 0;
+        //padding-top: 150px;
+        //border: 1px solid red;
     }
-    .image-container{
+    .content#overview{
+        margin-top: 150px;
+    }
+    .container#single{
         width: 100vw;
         max-width: 1000px;
-        max-height: 100vw;
         text-align: left;
+        padding-left: 3vw;
+        padding-right: 3vw;
+    }
+    .container#overview{
+        //border: 1px solid blue;
+        width: 100vw;
+        max-width: 1000px;
+        text-align: left;
+        padding-left: 3vw;
+        padding-right: 3vw;
+    }
+    .sideinfo {
+        position: fixed;
+        bottom: 3vh;
     }
 }
 
-@media all and (max-height: 700px) and (orientation:landscape){
+@media all and
+    (max-width: 643px) and
+    (orientation:portrait) and {
+        .content#overview {
+            align-items: flex-start;
+        }
+}
+
+@media all and
+    (max-height: 780px) and
+    (orientation:portrait) and {
+        .content#overview {
+            align-items: flex-start;
+        }
+    }
+
+@media all and
+(max-width: 930px) and
+(orientation:landscape){
+    .content#overview {
+        align-items: flex-start;
+        padding-top: 3vh;
+    }
+}
+
+@media all and
+    (max-height: 618px) and
+    (max-width: 1223px) and
+    (orientation:landscape){
+    .content#overview {
+        align-items: flex-start;
+        padding-top: 3vh;
+    }
+}
+@media all and
+    (max-height: 618px) and
+    (orientation:landscape){
     .sideinfo {
         bottom: 50px;
     }
@@ -275,7 +335,13 @@ nav a.active {
         align-items: flex-start;
         padding-top: 50px;
     }
+    .content#overview{
+        padding-top: 3vh;
+        margin-right: 0px;
+        padding-right: 1vw;
+    }
 }
+
 
 
 /*
