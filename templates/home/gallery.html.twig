@@ -2,12 +2,12 @@
 
 {% block content %}
     <div class="content">
-        <div class="gallery-container">
+        <div class="image-container">
             {% for photo in photos %}
                 <div class="slide">
                     <h2>{{ photo.getTitle }}</h2>
                     <div class="gallery-img">
-                        <img src="../img/photos/{{ photo.image }}"/>
+                        <img  class="fullsize" src="../img/photos/{{ photo.image }}"/>
                     </div>
                 </div>
             {% endfor %}

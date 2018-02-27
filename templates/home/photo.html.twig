@@ -2,10 +2,10 @@
 
 {% block content %}
     <div class="content">
-        <div class="gallery-container">
+        <div class="image-container">
             <a href="{{ path('ProjectsRoute') }}{{ project }}/{{ prevPhoto.slug }}" class="gallery-prev"></a>
             <a href="{{ path('ProjectsRoute') }}{{ project }}/{{ nextphoto.slug }}" class="gallery-next"></a>
-            <img src="{{ asset('img/photos/' ~ photo.image) }}"/>
+            <img  class="fullsize" src="{{ asset('img/photos/' ~ photo.image) }}"/>
         </div>
 
         <div id="info" class="overlay">

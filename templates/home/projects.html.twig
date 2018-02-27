@@ -2,10 +2,10 @@
 
 {% block content %}
     <div class="content">
-        <div class="overview-container">
+        <div class="image-container">
             {% for project in projects %}
                 <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
-                    <img src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">
+                    <img  class="grid" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">
                 </a>
             {% endfor %}
 

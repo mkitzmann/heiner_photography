@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-    $('img').css('display', 'none');
+   // $('img').css('opacity', '0');
 
-    $('img').fadeIn(1000);
+    //$('img').hide(0)
 
 
 
