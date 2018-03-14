@@ -1,14 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="content">
-        <div class="overview-container">
-            <h1>Adding a new project</h1>
+    <div class="content" id="overview">
+        <div class="container" id="overview">
+            {% for project in projects %}
+                <div class="overviewImage">
+                    <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
+                      <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}">
+                    </a>
+                </div>
+            {% endfor %}
 
-            {{ form_start(form) }}
-            {{ form_row(form.title) }}
-            {{ form_row(form.thumbnail) }}
-            {{ form_end(form) }}
+                <div class="overviewImage" id="add-project">
+                    <a href="#add">+</a>
+                </div>
+
+        </div>
+    </div>
+
+    <div id="add" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Adding a new project</h1>
+            <div class="popup-content">
+                {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.thumbnail) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 
