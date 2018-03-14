@@ -86,7 +86,7 @@ body {
     text-align: left;
 }
 
-img {
+img.fadein {
     -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 2s; /* Firefox < 16 */
     -ms-animation: fadein 2s; /* Internet Explorer */
@@ -102,6 +102,13 @@ img.fullsize{
 }
 
 div.overviewImage {
+    display: inline-block;
+    position: relative;
+    align-content: center;
+    justify-content: center;
+
+}
+div.overviewImage img{
     display: inline;
 }
 
@@ -121,7 +128,32 @@ div#add-project {
 }
 
 div#add-project a{
+    color: #ccc;
+}
 
+.hovertext{
+    display: none;
+}
+div.overviewImage:hover .hovertext{
+    display: block;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
+
+div.overviewImage .hovertext a{
+    color: #fff;
+}
+
+
+img.project-icon{
+    width: 3em;
+    margin:0 1.5em;
 }
 
 /*
@@ -161,7 +193,7 @@ a.logo {
 }
 
 span.bold {
-    font-weight: 700;
+    font-weight: 500;
 }
 
 nav {

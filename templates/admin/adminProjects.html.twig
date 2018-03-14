@@ -5,9 +5,15 @@
         <div class="container" id="overview">
             {% for project in projects %}
                 <div class="overviewImage">
-                    <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
+                        <div class="hovertext">
+                            <a href="#edit">
+                                <img class="project-icon" src="{{ asset('img/svg/settings-gear-63.svg')}}">
+                            </a>
+                            <a href="{{ path('AdminPhotosRoute', {'projectTitle': project.slug}) }}">
+                                <img class="project-icon" src="{{ asset('img/svg/grid-45.svg')}}">
+                            </a>
+                        </div>
                       <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}">
-                    </a>
                 </div>
             {% endfor %}
 
@@ -32,4 +38,13 @@
         </div>
     </div>
 
+    <div id="edit" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Edit Project</h1>
+            <div class="popup-content">
+            </div>
+        </div>
+    </div>
 {% endblock %}
