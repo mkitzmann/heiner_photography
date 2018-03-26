@@ -4,7 +4,7 @@
     <div class="content" id="overview">
         <div class="container" id="overview">
             {% for project in projects %}
-                <a href="{{ path('GalleryRoute', {'projectTitle': project.slug}) }}">
+                <a href="{{ path('GalleryRoute', {'project_slug': project.slug}) }}">
                     <img  class="grid" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}" class="overviewImage">
                 </a>
             {% endfor %}

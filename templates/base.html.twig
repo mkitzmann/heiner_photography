@@ -28,7 +28,7 @@
                 <a href="{{ path('IndexRoute') }}" class="logo">HEINER <span class="bold">LEISKA</span></a>
                 <nav class="main">
                     <a href="
-                        {{ path('ProjectsRoute') }}"   
+                        {{ path('ProjectsRoute') }}"
                             {% if app.request.attributes.get( '_route' )
                                 starts with 'ProjectsRoute' or 'GalleryRoute' %} class="active"
                             {% endif %}>

@@ -2,7 +2,6 @@ IndexRoute:
     path: /
     defaults: { _controller: 'App\Controller\HomeController::indexAction' }
 
-
 ProjectsRoute:
     path: /photography/
     defaults: { _controller: 'App\Controller\ProjectController::viewProjects' }
@@ -12,11 +11,11 @@ AboutRoute:
     defaults: { _controller: 'App\Controller\HomeController::AboutAction' }
 
 GalleryRoute:
-    path: /photography/{projectTitle}
-    defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
+    path: /photography/{project_slug}
+    defaults: { _controller: 'App\Controller\PhotoController::ViewProject' }
 
 PhotoRoute:
-    path: /photography/{projectTitle}/{photoTitle}
+    path: /photography/{project_slug}/{photo_slug}
     defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
 
 AdminLoginRoute:

@@ -15,11 +15,6 @@ class HomeController extends Controller
         return $this->render('home/index.html.twig');
     }
 
-    public function ProjectsAction()
-    {
-        return $this->render('projects.html.twig');
-    }
-
     public function AboutAction()
     {
         return $this->render('home/about.html.twig');
