@@ -33,7 +33,7 @@ $(document).ready(function() {
 
 });
 
-var el = document.getElementById('items');
+var el = document.getElementById('overviewContainer');
 var sortable = Sortable.create(el, {
     onEnd: function (/**Event*/evt) {
     var itemEl = evt.item;  // dragged HTMLElement

@@ -103,7 +103,10 @@ img.fullsize{
     max-height: 100%;
 }
 
-div.overviewImage {
+.container#overviewContainer{
+    margin: 0 3vw;
+}
+div.overviewImageContainer {
     display: inline-block;
     position: relative;
     align-content: center;

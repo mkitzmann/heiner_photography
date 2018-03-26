@@ -2,13 +2,13 @@
 
 {% block content %}
     <div class="content" id="overview">
-        <div class="container" id="overview">
-            <ul id="items">
+        <div class="container" id="overviewContainer">
                 {% for project in projects %}
 
 
-                    <li><img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}"></li>
-
+            <div class="overviewImageContainer">
+                <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}"></li>
+            </div>
     <!--
                 <div class="overviewImageContainer">
                         <div class="hovertext">
@@ -23,7 +23,6 @@
                 </div>
 //-->
             {% endfor %}
-            </ul>
                 <div class="overviewImage" id="add-project">
                     <a href="#add">+</a>
                 </div>
