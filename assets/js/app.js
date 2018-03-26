@@ -1,4 +1,15 @@
+require('../css/app.scss');
+var $ = require('jquery');
+
+var app = new Vue({
+    el: '#app',
+    data: {
+        message: 'Hello Vue!'
+    }
+})
+
 $(document).ready(function() {
+
 
    // $('img').css('opacity', '0');
 

@@ -1,5 +1,7 @@
+$primary-color: red;
+
 * {
-    //border: 1px solid red;
+    //border: 1px solid $primary-color;
     text-decoration: none;
     color: black;
     -webkit-box-sizing: border-box;
@@ -347,7 +349,7 @@ nav a.active {
 
 @media all and
     (max-width: 643px) and
-    (orientation:portrait) and {
+    (orientation:portrait)  {
         .content#overview {
             align-items: flex-start;
         }
@@ -355,7 +357,7 @@ nav a.active {
 
 @media all and
     (max-height: 780px) and
-    (orientation:portrait) and {
+    (orientation:portrait)  {
         .content#overview {
             align-items: flex-start;
         }
