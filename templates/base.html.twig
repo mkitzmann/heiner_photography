@@ -18,8 +18,8 @@
         {% endblock %}
     </head>
     <body>
-    <div id="app"><span v-text="message">test
-        </span></div>
+
+
     <div class="global">
 
     {% block sidebar %}
@@ -51,6 +51,7 @@
 
     {% block javascripts %}
         <script type="text/javascript" src="{{ asset('build/js/app.js') }}"></script>
+        <script src="http://rubaxa.github.io/Sortable/Sortable.js"></script>
     {% endblock %}
 
     </body>

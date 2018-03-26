@@ -1,12 +1,8 @@
 require('../css/app.scss');
+var Sortable = require('sortablejs');
+//require('../js/index.vue');
 var $ = require('jquery');
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!'
-    }
-})
 
 $(document).ready(function() {
 
@@ -35,4 +31,15 @@ $(document).ready(function() {
 
     }
 
+});
+
+var el = document.getElementById('items');
+var sortable = Sortable.create(el, {
+    onEnd: function (/**Event*/evt) {
+    var itemEl = evt.item;  // dragged HTMLElement
+    evt.to;    // target list
+    evt.from;  // previous list
+    evt.oldIndex;  // element's old index within old parent
+    console.log(evt.newIndex);  // element's new index within new parent);
+}
 });

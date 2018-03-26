@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.7.1_1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add --save jquery
+  /usr/local/Cellar/node/9.7.1_1/bin/node /usr/local/Cellar/yarn/1.5.1_1/libexec/bin/yarn.js add Vue.Draggable
 
 PATH: 
   /Users/moritz/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
@@ -17,6 +17,7 @@ npm manifest:
   {
     "devDependencies": {
       "@symfony/webpack-encore": "^0.19.0",
+      "jquery": "^3.3.1",
       "node-sass": "^4.8.3",
       "sass-loader": "^6.0.7",
       "vue": "^2.5.16",
@@ -3006,6 +3007,10 @@ Lockfile:
     version "0.1.2"
     resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   
+  jquery@^3.3.1:
+    version "3.3.1"
+    resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  
   js-base64@^2.1.8, js-base64@^2.1.9:
     version "2.4.3"
     resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -5819,14 +5824,11 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: Missing list of packages to add to your project.
+  Error: Couldn't find package "Vue.Draggable" on the "npm" registry.
       at new MessageError (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:186:110)
-      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:40587:13)
+      at NpmResolver.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:51625:15)
       at Generator.next (<anonymous>)
       at step (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:116:14
-      at new Promise (<anonymous>)
-      at new F (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:23451:28)
-      at Object.<anonymous> (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:95:12)
-      at Object.run (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:40599:19)
-      at run (/usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:89113:20)
+      at /usr/local/Cellar/yarn/1.5.1_1/libexec/lib/cli.js:109:13
+      at <anonymous>
+      at process._tickCallback (internal/process/next_tick.js:118:7)
