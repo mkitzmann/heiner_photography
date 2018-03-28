@@ -1,9 +1,8 @@
 require('../css/app.scss');
 var Sortable = require('sortablejs');
-//require('../js/index.vue');
 var $ = require('jquery');
 
-
+/*
 $(document).ready(function() {
 
 
@@ -35,7 +34,7 @@ $(document).ready(function() {
 
 var el = document.getElementById('overviewContainer');
 var sortable = Sortable.create(el, {
-    onEnd: function (/**Event*/evt) {
+    onEnd: function (evt) {
     var itemEl = evt.item;  // dragged HTMLElement
     evt.to;    // target list
     evt.from;  // previous list
@@ -43,3 +42,26 @@ var sortable = Sortable.create(el, {
     console.log(evt.newIndex);  // element's new index within new parent);
 }
 });
+*/
+
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false;
+
+/* eslint-disable no-new */
+new Vue({
+    el: '#app',
+    data: {
+        projects: null,
+        username: ''
+    },
+    template: '<App/>',
+    components: { App },
+    beforeMount: function() {
+        this.projects = JSON.parse(this.$el.attributes['data-projects']).value;
+        this.username = this.projects.name;
+        console.log(this.projects);
+    }
+
+})

@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository"))
  */
 class Project
 {
@@ -44,11 +44,11 @@ class Project
      */
     private $photos;
 
-
-    public function __construct()
-    {
-        $this->products = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="integer")
+     * @var int
+     */
+    private $position;
 
     /**
      * @return int
@@ -119,6 +119,22 @@ class Project
     public function __toString():string
     {
         return $this->getId();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     */
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 
 

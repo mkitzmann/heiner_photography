@@ -11,6 +11,11 @@ use App\Service\FileUploader;
 use App\Entity\Project;
 use App\Form\ProjectType;
 use Cocur\Slugify\Slugify;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
 
 class ProjectController extends Controller
 {
@@ -48,28 +53,14 @@ class ProjectController extends Controller
     public function viewProjects()
     {
         $projectRepo = $this->getDoctrine()->getRepository(Project::class);
-        $projects = $projectRepo->findAll();
+        $projects = $projectRepo->findAll(['position' => 'ASC']);
 
         return $this->render('home/projects.html.twig', [
             'projects' => $projects,
         ]);
     }
 
-    public function ViewGallery(Request $request, string $projectTitle)
-    {
-        $project = $this->getDoctrine()
-            ->getRepository(Project::class)
-            ->findOneBy(['slug' => $projectTitle]);
-
-        $photo = $project->getPhotos();
-
-
-        return $this->render('home/photo.html.twig',array(
-            'photo' => $photo[0],
-            'nextphoto' => $photo[1]));
-    }
-
-    public function editProjects(Request $request, FileUploader $fileUploader)
+    public function editProjects(Request $request, FileUploader $fileUploader, SerializerInterface $serializer)
     {
         $projectRepo = $this->getDoctrine()->getRepository(Project::class);
         $projects = $projectRepo->findAll();
@@ -98,11 +89,66 @@ class ProjectController extends Controller
             return $this->redirect($this->generateUrl('AdminProjectsRoute'));
         }
 
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setCircularReferenceLimit(2);
+        $normalizer->setCircularReferenceHandler(function ($object) {
+            return $object->getId();
+        });
+        $normalizers = array($normalizer);
+
+        $serializer = new Serializer($normalizers, $encoders);
+
+        $jsonProjects = $serializer->serialize($projects, 'json');
+
         return $this->render('admin/adminProjects.html.twig', [
-            'projects' => $projects,
+            'projects' => $jsonProjects,
             'form' => $form->createView(),
         ]);
 
     }
+
+
+    public function updateProjectPosition(project $project, $position){
+
+        if($project->getPosition() == $position){
+            return new Response('Position of project with id '.$project->getId().' is already position '.$position);
+        }
+        else
+            {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            //get total no of projects
+            $projectsRepo = $entityManager->getRepository(Project::class);
+            $allProjects = $projectsRepo->findAll();
+            $totalProjects = count($allProjects);
+
+            //check if sorting is ok + set position for each project
+            foreach($allProjects as $singleProject){
+                $currentPosition = $singleProject->getPosition();
+                if($currentPosition > $totalProjects){
+                    throw new \Exception('position of project with id '.
+                        $singleProject->getId().' higher then total');
+                }
+                elseif($currentPosition == $project->getPosition()) {}
+                elseif($currentPosition >= $position and $currentPosition < $project->getPosition()){
+                    $singleProject->setPosition(($currentPosition+1));
+                    //dump($singleProject);
+                }
+                elseif($currentPosition <= $position and $currentPosition > $project->getPosition()){
+                    $singleProject->setPosition(($currentPosition-1));
+                    //dump($singleProject);
+                }
+            }
+
+            $project->setPosition($position);
+            $entityManager->flush();
+
+            return new Response('Set position of project with id '.
+                $project->getId().' to position '.
+                $position);
+
+        }
+            }
 
 }

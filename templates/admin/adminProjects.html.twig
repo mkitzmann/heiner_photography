@@ -1,15 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+
     <div class="content" id="overview">
         <div class="container" id="overviewContainer">
-                {% for project in projects %}
+            <div id="app" data-projects="JSON.parse('{{ projects|raw }}')"></div>
+            <!--      {% for project in projects %}
 
 
             <div class="overviewImageContainer">
                 <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}"></li>
             </div>
-    <!--
+
                 <div class="overviewImageContainer">
                         <div class="hovertext">
                             <a href="#edit">
@@ -21,8 +23,9 @@
                         </div>
                       <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}">
                 </div>
-//-->
+
             {% endfor %}
+            //-->
                 <div class="overviewImage" id="add-project">
                     <a href="#add">+</a>
                 </div>
