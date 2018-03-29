@@ -1,15 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block content %}
-    <div class="content">
-        <div class="overview-container">
-            <h1>Adding a new project</h1>
+        {% block scripts %}
+            <script type="text/javascript">
+                //window.__INITIAL_STATE__ = '{ "projects": {{ projects|raw }} }';
+                var twigProjects = JSON.parse('{{ projects|raw }}')
+            </script>
+        {% endblock %}
 
-            {{ form_start(form) }}
-            {{ form_row(form.title) }}
-            {{ form_row(form.thumbnail) }}
-            {{ form_end(form) }}
+{% block content %}
+
+    <div class="content" id="overview">
+        <div class="container" id="overviewContainer">
+            <div id="app"></div>
+            <!--
+{% for project in projects %}
+
+
+            <div class="overviewImageContainer">
+                <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}"></li>
+            </div>
+
+                <div class="overviewImageContainer">
+                        <div class="hovertext">
+                            <a href="#edit">
+                                <img class="project-icon" src="{{ asset('img/svg/settings-gear-63.svg')}}">
+                            </a>
+                            <a href="{{ path('AdminPhotosRoute', {'projectTitle': project.slug}) }}">
+                                <img class="project-icon" src="{{ asset('img/svg/grid-45.svg')}}">
+                            </a>
+                        </div>
+                      <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}">
+                </div>
+
+            {% endfor %}
+
+                <div class="overviewImage" id="add-project">
+                    <a href="#add">+</a>
+                </div>
+//-->
+        </div>
+
+    </div>
+
+    <div id="add" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Adding a new project</h1>
+            <div class="popup-content">
+                {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.thumbnail) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 
+    <div id="edit" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Edit Project</h1>
+            <div class="popup-content">
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -2,7 +2,6 @@ IndexRoute:
     path: /
     defaults: { _controller: 'App\Controller\HomeController::indexAction' }
 
-
 ProjectsRoute:
     path: /photography/
     defaults: { _controller: 'App\Controller\ProjectController::viewProjects' }
@@ -12,17 +11,29 @@ AboutRoute:
     defaults: { _controller: 'App\Controller\HomeController::AboutAction' }
 
 GalleryRoute:
-        path: /photography/{projectTitle}
-        defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
+    path: /photography/{project_slug}
+    defaults: { _controller: 'App\Controller\PhotoController::ViewProject' }
 
 PhotoRoute:
-        path: /photography/{projectTitle}/{photoTitle}
-        defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
+    path: /photography/{project_slug}/{photo_slug}
+    defaults: { _controller: 'App\Controller\PhotoController::ViewPhoto' }
+
+AdminLoginRoute:
+    path: /admin
+    defaults: { _controller: 'App\Controller\SecurityController::login' }
 
 AdminProjectsRoute:
     path: /admin/projects
+    defaults: { _controller: 'App\Controller\ProjectController::editProjects' }
+
+AdminAddProjectRoute:
+    path: /admin/projects/add
     defaults: { _controller: 'App\Controller\ProjectController::newProject' }
 
+AdminProjectsPositionRoute:
+    path: /admin/projects/{id}/position/{position}
+    defaults: { _controller: 'App\Controller\ProjectController::updateProjectPosition' }
+
 AdminPhotosRoute:
-        path: /admin/photos
-        defaults: { _controller: 'App\Controller\PhotoController::newPhoto' }
+    path: /admin/photos
+    defaults: { _controller: 'App\Controller\PhotoController::newPhoto' }

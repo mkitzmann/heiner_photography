@@ -3,10 +3,12 @@ namespace App\Controller;
 
 use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Service\FileUploader;
+use App\Service\PhotoPosition;
 use App\Entity\Photo;
 use App\Entity\Project;
 use App\Form\PhotoType;
@@ -44,64 +46,45 @@ class PhotoController extends Controller
         ));
     }
 
-    public function ViewPhoto(Request $request)
+    /**
+     * @ParamConverter("project", class="App\Entity\Project", options={"mapping": {"project_slug": "slug"}})
+     * @ParamConverter("photo", class="App\Entity\Photo", options={"mapping": {"photo_slug": "slug"}})
+     */
+    public function ViewPhoto(Project $project, Photo $photo, PhotoPosition $photoPosition)
     {
-        $projectTitle = $request->get('projectTitle');
-        $project = $this->getDoctrine()
-            ->getRepository(Project::class)
-            ->findOneBy(['slug' => $projectTitle]);
-        $projectId = $project->getId();
-
-        $photoRepo = $this->getDoctrine()->getRepository(Photo::class);
-
-        $photoCount = $photoRepo->count(['project' => $projectId]);
-
-        if ($photoTitle = $request->get('photoTitle')) {
-            $currentPhoto = $photoRepo->findOneBy([
-                'slug' => $photoTitle,
-                'project' => $projectId
-                ]);
-            $photoPosition = $currentPhoto->getPosition();
-        }else{
-            $currentPhoto = $photoRepo->findOneBy([
-                'position' => 1,
-                'project' => $projectId
-            ]);
-            $photoPosition = 1;
-        }
-
-        $nextPhoto = $photoRepo->findOneBy([
-            'project' => $projectId,
-            'position' => $photoPosition+1
-        ]);
-
-        if ($nextPhoto == NULL){
-            $nextPhoto = $photoRepo->findOneBy([
-                'position' => 1,
-                'project' => $projectId
-            ]);
-        }
-
-        $prevPhoto = $photoRepo->findOneBy([
-            'project' => $projectId,
-            'position' => $photoPosition-1
-        ]);
-
-
-        if ($prevPhoto == NULL){
-            $prevPhoto = $photoRepo->findOneBy([
-                'position' => $photoCount,
-                'project' => $projectId,
-            ]);
-        }
+        $prevNextPhoto = $photoPosition->prevNextPhoto($project, $photo);
 
         return $this->render('home/photo.html.twig',array(
-            'photo' => $currentPhoto,
-            'project' => $projectTitle,
-            'nextphoto' => $nextPhoto,
-            'prevPhoto' => $prevPhoto));
+            'photo' => $photo,
+            'project' => $project,
+            'nextphoto' => $prevNextPhoto["next"],
+            'prevPhoto' => $prevNextPhoto["prev"]));
     }
 
+    /**
+     * @ParamConverter("project", class="App\Entity\Project", options={"mapping": {"project_slug": "slug"}})
+     */
+    public function ViewProject(Project $project, PhotoPosition $photoPosition)
+    {
+        $photo = $this->getDoctrine()
+            ->getRepository(Photo::class)
+            ->findOneBy([
+                'project' => $project->getId(),
+                'position' => 1,
+            ]);
 
+        if($photo == NULL){
+            throw $this->createNotFoundException('No Photos in Project '.$project->getTitle());
+        }else{
+            $prevNextPhoto = $photoPosition->prevNextPhoto($project, $photo);
+
+            return $this->render('home/photo.html.twig',array(
+                'photo' => $photo,
+                'project' => $project,
+                'nextphoto' => $prevNextPhoto["next"],
+                'prevPhoto' => $prevNextPhoto["prev"]));
+        }
+
+    }
     
 }

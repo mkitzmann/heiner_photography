@@ -31,6 +31,4 @@ class PhotoRepository extends ServiceEntityRepository
         // to get just one result:
         // $product = $qb->setMaxResults(1)->getOneOrNullResult();
     }
-
-
 }
