@@ -49,19 +49,20 @@ import App from './App.vue'
 
 Vue.config.productionTip = false;
 
+//let initialState = JSON.parse(window.__INITIAL_STATE__);
+
+//console.log(initalState);
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
     data: {
-        projects: null,
-        username: ''
+        projects: '',
     },
     template: '<App/>',
     components: { App },
     beforeMount: function() {
-        this.projects = JSON.parse(this.$el.attributes['data-projects']).value;
-        this.username = this.projects.name;
-        console.log(this.projects);
+        this.projects = twigProjects;
     }
-
 })
+

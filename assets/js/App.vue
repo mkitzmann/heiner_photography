@@ -1,11 +1,25 @@
 <template>
 <div id="app">
-    <h1>My Todo App!</h1>
+
+    <ul id="example-1">
+        <div v-for="project in projects">
+            <img :src="'../img/thumbnails/'+project.thumbnail"></img>
+        </div>
+    </ul>
+
 </div>
 </template>
 
 <script>
-//import TodoList from './components/TodoList.vue'
+//import draggable from 'vuedraggable'
+
+module.exports = {
+    data:function() {
+        return {
+            projects: twigProjects
+        }
+    }
+}
 </script>
 
 <style lang="scss">

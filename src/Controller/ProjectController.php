@@ -13,6 +13,7 @@ use App\Form\ProjectType;
 use Cocur\Slugify\Slugify;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -91,10 +92,7 @@ class ProjectController extends Controller
 
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizer = new ObjectNormalizer();
-        $normalizer->setCircularReferenceLimit(2);
-        $normalizer->setCircularReferenceHandler(function ($object) {
-            return $object->getId();
-        });
+        $normalizer->setIgnoredAttributes(array('photos'));
         $normalizers = array($normalizer);
 
         $serializer = new Serializer($normalizers, $encoders);
