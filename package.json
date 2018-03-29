@@ -10,6 +10,7 @@
     "webpack-notifier": "^1.6.0"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "css-loader": "^0.28.11",
     "sortable": "^2.0.0",
     "sortablejs": "^1.7.0",

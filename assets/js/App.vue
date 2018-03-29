@@ -1,22 +1,39 @@
 <template>
 <div id="app">
-
-    <ul id="example-1">
-        <div v-for="project in projects">
-            <img :src="'../img/thumbnails/'+project.thumbnail"></img>
+    <draggable v-model="projects" @start="drag=true" @end="onEnd" :options="{delay: 10,animation: 300}">
+        <div v-for="project in projects" :id="project.id" class="overviewImageContainer">
+            <img :src="'../img/thumbnails/'+project.thumbnail" class="overviewImage">
         </div>
-    </ul>
+    </draggable>
 
 </div>
 </template>
 
 <script>
-//import draggable from 'vuedraggable'
+import draggable from 'vuedraggable'
+var axios = require('axios');
 
-module.exports = {
+export default {
+    components: {
+        draggable,
+    },
     data:function() {
         return {
             projects: twigProjects
+        }
+    },
+    methods: {
+        onEnd: function( item) {
+            console.log( 'moved element with id '+item.clone.id+' to position '+(item.newIndex+1) );
+
+            axios.post('projects/'+item.clone.id+'/position/'+(item.newIndex+1))
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    // Wu oh! Something went wrong
+                    console.log(error.message);
+                });
         }
     }
 }
