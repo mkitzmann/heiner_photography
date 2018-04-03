@@ -1,14 +1,11 @@
 <?php
 namespace App\Controller;
 
-use App\Repository\PhotoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 use App\Service\FileUploader;
-use App\Service\PhotoPosition;
+use App\Service\PhotoPositioner;
 use App\Entity\Photo;
 use App\Entity\Project;
 use App\Form\PhotoType;
@@ -50,9 +47,9 @@ class PhotoController extends Controller
      * @ParamConverter("project", class="App\Entity\Project", options={"mapping": {"project_slug": "slug"}})
      * @ParamConverter("photo", class="App\Entity\Photo", options={"mapping": {"photo_slug": "slug"}})
      */
-    public function ViewPhoto(Project $project, Photo $photo, PhotoPosition $photoPosition)
+    public function ViewPhoto(Project $project, Photo $photo, PhotoPositioner $photoPosition)
     {
-        $prevNextPhoto = $photoPosition->prevNextPhoto($project, $photo);
+        $prevNextPhoto = $photoPosition->adjacentPhotos($project, $photo);
 
         return $this->render('home/photo.html.twig',array(
             'photo' => $photo,
@@ -64,7 +61,7 @@ class PhotoController extends Controller
     /**
      * @ParamConverter("project", class="App\Entity\Project", options={"mapping": {"project_slug": "slug"}})
      */
-    public function ViewProject(Project $project, PhotoPosition $photoPosition)
+    public function ViewProject(Project $project, PhotoPositioner $photoPosition)
     {
         $photo = $this->getDoctrine()
             ->getRepository(Photo::class)
@@ -76,7 +73,7 @@ class PhotoController extends Controller
         if($photo == NULL){
             throw $this->createNotFoundException('No Photos in Project '.$project->getTitle());
         }else{
-            $prevNextPhoto = $photoPosition->prevNextPhoto($project, $photo);
+            $prevNextPhoto = $photoPosition->adjacentPhotos($project, $photo);
 
             return $this->render('home/photo.html.twig',array(
                 'photo' => $photo,

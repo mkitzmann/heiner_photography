@@ -5,7 +5,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Photo;
 use App\Entity\Project;
 
-class PhotoPosition
+class PhotoPositioner
 {
     private $repository;
 
@@ -14,7 +14,7 @@ class PhotoPosition
         $this->repository = $entityManager->getRepository(Photo::class);
     }
 
-    public function prevNextPhoto(Project $project, Photo $photo)
+    public function adjacentPhotos(Project $project, Photo $photo)
     {
         $photoPosition = $photo->getPosition();
         $photoCount = $this->repository->count(['project' => $project->getId()]);
@@ -26,7 +26,7 @@ class PhotoPosition
             ]);
         }else{
             $prevPhoto = $this->repository->findOneBy([
-                'position' => $photoPosition-1,
+                'position' => ($photoPosition - 1),
                 'project' => $project->getId(),
             ]);
         }
@@ -38,7 +38,7 @@ class PhotoPosition
             ]);
         }else{
             $nextPhoto = $this->repository->findOneBy([
-                'position' => $photoPosition+1,
+                'position' => ($photoPosition + 1),
                 'project' => $project->getId(),
             ]);
         }
@@ -49,6 +49,4 @@ class PhotoPosition
         );
         return $response;
     }
-
-   
 }

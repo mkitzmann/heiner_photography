@@ -24,7 +24,7 @@ AdminLoginRoute:
 
 AdminProjectsRoute:
     path: /admin/projects
-    defaults: { _controller: 'App\Controller\ProjectController::editProjects' }
+    defaults: { _controller: 'App\Controller\ProjectController::adminProjects' }
 
 AdminAddProjectRoute:
     path: /admin/projects/add
