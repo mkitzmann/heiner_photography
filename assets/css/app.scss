@@ -124,7 +124,7 @@ input[type=text], input[type=password],input[type=file]  {
 }
 
 /* Set a style for all buttons */
-button {
+button.btn-full-width {
     background-color: #ccc;
     font-size: 0.8em;
     color: white;

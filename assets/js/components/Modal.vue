@@ -1,8 +1,8 @@
 <template>
     <transition name="modal">
-        <div class="modal-mask">
+        <div class="modal-mask" @click="close">
             <div class="modal-wrapper">
-                <div class="modal-container">
+                <div class="modal-container" @click.stop>
 
                     <div class="modal-header">
                         <slot name="header">
@@ -17,12 +17,15 @@
                     </div>
 
                     <div class="modal-footer">
-                        <slot name="footer">
-                            default footer
-                            <button class="modal-default-button" @click="$emit('close')">
-                                OK
-                            </button>
-                        </slot>
+                        <button class="modal-default-button" @click="$emit('close')">
+                            Cancel
+                        </button>
+                        <button class="modal-default-button modal-delete-button" @click="$emit('close')">
+                            Delete Project
+                        </button>
+                        <button class="modal-default-button" @click="$emit('close')">
+                            Save Project
+                        </button>
                     </div>
                 </div>
             </div>
@@ -32,12 +35,11 @@
 
 <script>
     export default {
-
-        data() {
-            return {
-                submitButton: 'Create',
-                title: 'Create'
-            };
+        name: 'modal',
+        methods: {
+            close: function () {
+                this.$emit('close');
+            }
         }
     }
 </script>
@@ -50,30 +52,32 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
+        background-color: rgba(255, 255, 255, .7);
+        display: flex;
+        box-orient: horizontal;
+        flex-flow: column nowrap;
+        align-content: center;
+        justify-content: center;
+        transition: opacity .6s ease;
     }
 
     .modal-wrapper {
-        display: table-cell;
-        vertical-align: middle;
+        display: flex;
     }
 
     .modal-container {
-        width: 300px;
         margin: 0px auto;
         padding: 20px 30px;
         background-color: #fff;
-        border-radius: 2px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-        transition: all .3s ease;
+        transition: all .6s ease;
         font-family: Helvetica, Arial, sans-serif;
     }
 
     .modal-header h3 {
         margin-top: 0;
-        color: #42b983;
+        color: #000;
+        max-width: 100%;
     }
 
     .modal-body {
@@ -81,8 +85,19 @@
     }
 
     .modal-default-button {
-        float: right;
+        background-color: #ccc;
+        font-size: 0.8em;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
     }
+
+    .modal-delete-button {
+        background-color: #d54;
+    }
+
 
     /*
      * The following styles are auto-applied to elements with
@@ -103,7 +118,7 @@
 
     .modal-enter .modal-container,
     .modal-leave-active .modal-container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
+        -webkit-transform: scale(1.0);
+        transform: scale(1.0);
     }
 </style>
