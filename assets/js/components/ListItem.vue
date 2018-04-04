@@ -54,18 +54,17 @@
 <style>
 
     .hovertext{
-        display: none;
+        opacity: 0;
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
     }
     .overviewImageContainer:hover .hovertext{
-        display: inline-block;
-        position: absolute;
-        width: 100%;
-        z-index: 1;
-        left: 50%;
-        top: 50%;
-        color: #fff;
-        text-align: center;
-        transform: translate(-50%, -50%);
+        opacity: 1;
+        transition: opacity .6s ease;
     }
 
     .icon{
@@ -75,10 +74,12 @@
 
     .overviewImageContainer:hover .handle {
         opacity: 1;
+        transition: opacity .6s ease;
     }
     .handle {
+        z-index: 100;
         opacity: 0;
-        width: 1.3em;
+        width: 1.4em;
         position: absolute;
         margin: 0.5em;
         cursor: move;
