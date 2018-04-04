@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\FileUploader;
 use App\Service\PhotoPositioner;
+use App\Service\TypeConverter;
 use App\Entity\Photo;
 use App\Entity\Project;
 use App\Form\PhotoType;
@@ -13,6 +14,26 @@ use Cocur\Slugify\Slugify;
 
 class PhotoController extends Controller
 {
+    /**
+     * @ParamConverter("project", class="App\Entity\Project", options={"mapping": {"project_slug": "slug"}})
+     */
+    public function adminPhotos(Project $project, Request $request, FileUploader $fileUploader, TypeConverter $typeConverter)
+    {
+        $photoRepo = $this->getDoctrine()->getRepository(Photo::class);
+        $photos = $photoRepo->findby(['project' => $project]);
+
+        $jsonPhotos = $typeConverter->jsonConvert($photos);
+
+        $photo = new photo();
+        $form = $this->createForm(PhotoType::class, $photo);
+
+        return $this->render('admin/adminPhotos.html.twig', [
+            'photos' => $jsonPhotos,
+            'form' => $form->createView(),
+        ]);
+
+    }
+
     public function newPhoto(Request $request, FileUploader $fileUploader)
     {
         $photo = new Photo();

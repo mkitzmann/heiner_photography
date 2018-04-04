@@ -35,5 +35,5 @@ AdminProjectsPositionRoute:
     defaults: { _controller: 'App\Controller\ProjectController::updateProjectPosition' }
 
 AdminPhotosRoute:
-    path: /admin/photos
-    defaults: { _controller: 'App\Controller\PhotoController::newPhoto' }
+    path: /admin/projects/{project_slug}
+    defaults: { _controller: 'App\Controller\PhotoController::adminPhotos' }

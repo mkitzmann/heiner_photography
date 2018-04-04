@@ -1,15 +1,10 @@
 <template>
-<div id="app">
-    <draggable v-model="projects" @start="drag=true" @end="onEnd" :options="{handle:'.handle',animation: 300,filter: '.ignore-elements'}" class="overview-wrapper">
-        <div v-for="project in projects" :id="project.id" class="overviewImageContainer">
-            <modal v-if="showModal" @close="showModal = false">
-                <div slot="body" :content="project.id"></div>
-                <h3 slot="header">custom header</h3>
-            </modal>
-
+<div id="photoAdmin">
+    <draggable v-model="photos" @start="drag=true" @end="onEnd" :options="{handle:'.handle',animation: 300,filter: '.ignore-elements'}" class="overview-wrapper">
+        <div v-for="project in photos" :id="project.id" class="overviewImageContainer">
                 <img class="handle" :src="'../img/svg/drag.svg'">
             <div class="hovertext">
-                <a href="#edit" @click="showModal = true">
+                <a href="#edit">
                     <img class="project-icon" :src="'../img/svg/settings-gear-63.svg'">
                 </a>
                 <a :href="'projects/'+project.slug">
@@ -18,34 +13,27 @@
             </div>
             <img :src="'../img/thumbnails/'+project.thumbnail" class="overviewImage">
         </div>
-    </draggable>
-    <div class="overviewImageContainer ignore-elements">
-        <div class="add-project-wrapper">
-            <a href="#add" class="add-project-link">+</a>
+        <div class="overviewImageContainer ignore-elements">
+            <div class="add-project-wrapper">
+                <a href="#add" class="add-project-link">+</a>
+            </div>
         </div>
-    </div>
-
-
+    </draggable>
 
 </div>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
-import modal from './components/Modal.vue'
-import listitem from './components/ListItem.vue'
 var axios = require('axios');
 
 export default {
     components: {
         draggable,
-        modal,
-        listitem
     },
     data:function() {
         return {
-            projects: twigProjects,
-            showModal: false
+            photos: twigPhotos
         }
     },
     methods: {
@@ -55,7 +43,7 @@ export default {
             }else{
                 console.log( 'moved element with id '+item.clone.id+' to position '+(item.newIndex+1) );
 
-                axios.post('projects/'+item.clone.id+'/position/'+(item.newIndex+1))
+                axios.post('projects/'+item.clone.id+'/photo/'+item.clone.id+'/position/'+(item.newIndex+1))
                     .then(function (response) {
                         console.log(response);
                     })

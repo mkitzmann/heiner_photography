@@ -31,17 +31,6 @@ $(document).ready(function() {
     }
 
 });
-
-var el = document.getElementById('overviewContainer');
-var sortable = Sortable.create(el, {
-    onEnd: function (evt) {
-    var itemEl = evt.item;  // dragged HTMLElement
-    evt.to;    // target list
-    evt.from;  // previous list
-    evt.oldIndex;  // element's old index within old parent
-    console.log(evt.newIndex);  // element's new index within new parent);
-}
-});
 */
 
 import Vue from 'vue'
@@ -65,4 +54,3 @@ new Vue({
         this.projects = twigProjects;
     }
 })
-

@@ -1,22 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/baseAdmin.html.twig' %}
+
+        {% block scripts %}
+            <script type="text/javascript">
+                var twigPhotos = JSON.parse('{{ photos|raw }}')
+            </script>
+        {% endblock %}
 
 {% block content %}
-    <div class="content">
-        <div class="overview-container">
-            <h1>Adding a new photo</h1>
 
-            {{ form_start(form) }}
-            {{ form_row(form.title) }}
-            {{ form_row(form.text) }}
-            {{ form_row(form.location) }}
-            {{ form_row(form.year) }}
-            {{ form_row(form.price) }}
-            {{ form_row(form.pricedescription) }}
-            {{ form_row(form.project) }}
-            {{ form_row(form.position) }}
-            {{ form_row(form.image) }}
-            {{ form_end(form) }}
+    <div class="content" id="overview">
+        <div class="container" id="overviewContainer">
+            <div id="photoAdmin"></div>
+        </div>
+
+    </div>
+
+    <div id="add" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Adding a new photo</h1>
+            <div class="popup-content">
+                {{ form_start(form) }}
+                {{ form_row(form.title) }}
+                {{ form_row(form.text) }}
+                {{ form_row(form.location) }}
+                {{ form_row(form.year) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.pricedescription) }}
+                {{ form_row(form.project) }}
+                {{ form_row(form.position) }}
+                {{ form_row(form.image) }}
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 
+    <div id="edit" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Edit Project</h1>
+            <div class="popup-content">
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -18,7 +18,7 @@ class ProjectType extends AbstractType
         $builder
             ->add('title', TextType::class, array('label' => 'Title'))
             ->add('thumbnail', FileType::class, array('label' => 'Thumbnail (Image file)'))
-            ->add('save', SubmitType::class, array('label' => 'Upload Image'))
+            ->add('save', SubmitType::class, array('label' => 'Add Project'))
             ->getForm();
         ;
     }
