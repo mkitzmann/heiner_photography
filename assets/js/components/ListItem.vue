@@ -1,12 +1,12 @@
 <template>
     <div>
-        <img class="handle" :src="'../img/svg/drag.svg'">
+        <img class="handle" :src="'../../img/svg/drag.svg'">
         <div class="hovertext">
             <a href="#edit" @click="showModal = true">
-                <img class="icon" :src="'../img/svg/settings-gear-63.svg'">
+                <img class="icon" :src="'../../img/svg/settings-gear-63.svg'">
             </a>
             <a :href="'projects/'+item.slug">
-                <img class="icon" :src="'../img/svg/grid-45.svg'">
+                <img class="icon" :src="'../../img/svg/grid-45.svg'">
             </a>
         </div>
         <div class="overviewImageMask">
