@@ -45,12 +45,6 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
-    data: {
-        projects: '',
-    },
     template: '<App/>',
     components: { App },
-    beforeMount: function() {
-        this.projects = twigProjects;
-    }
 })
