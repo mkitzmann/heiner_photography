@@ -35,6 +35,7 @@
         data:function() {
             return {
                 items: twigProjects,
+                imageDirectory: imageDirectory,
             }
         },
         methods: {

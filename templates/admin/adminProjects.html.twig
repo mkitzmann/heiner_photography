@@ -4,6 +4,7 @@
             <script type="text/javascript">
                 //window.__INITIAL_STATE__ = '{ "projects": {{ projects|raw }} }';
                 var twigProjects = JSON.parse('{{ projects|raw }}')
+                var imageDirectory = '{{ thumbnail_directory|raw }}';
             </script>
         {% endblock %}
 
@@ -12,32 +13,6 @@
     <div class="content" id="overview">
         <div class="container" id="overviewContainer">
             <div id="app"></div>
-            <!--
-{% for project in projects %}
-
-
-            <div class="overviewImageContainer">
-                <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}"></li>
-            </div>
-
-                <div class="overviewImageContainer">
-                        <div class="hovertext">
-                            <a href="#edit">
-                                <img class="project-icon" src="{{ asset('img/svg/settings-gear-63.svg')}}">
-                            </a>
-                            <a href="{{ path('AdminPhotosRoute', {'projectTitle': project.slug}) }}">
-                                <img class="project-icon" src="{{ asset('img/svg/grid-45.svg')}}">
-                            </a>
-                        </div>
-                      <img  class="overviewImage" src="{{ asset('img/thumbnails/' ~ project.thumbnail) }}">
-                </div>
-
-            {% endfor %}
-
-                <div class="overviewImage" id="add-project">
-                    <a href="#add">+</a>
-                </div>
-//-->
         </div>
 
     </div>
@@ -50,7 +25,7 @@
             <div class="popup-content">
                 {{ form_start(form) }}
                 {{ form_row(form.title) }}
-                {{ form_row(form.thumbnail) }}
+                {{ form_row(form.image) }}
                 {{ form_end(form) }}
             </div>
         </div>

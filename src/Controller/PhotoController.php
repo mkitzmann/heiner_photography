@@ -20,16 +20,16 @@ class PhotoController extends Controller
     public function adminPhotos(Project $project, Request $request, FileUploader $fileUploader, TypeConverter $typeConverter)
     {
         $photoRepo = $this->getDoctrine()->getRepository(Photo::class);
-        $photos = $photoRepo->findby(['project' => $project]);
+        $photos = $photoRepo->findby(['project' => $project],['position' => 'ASC']);
 
         $jsonPhotos = $typeConverter->jsonConvert($photos);
-
         $photo = new photo();
         $form = $this->createForm(PhotoType::class, $photo);
 
         return $this->render('admin/adminPhotos.html.twig', [
             'photos' => $jsonPhotos,
             'form' => $form->createView(),
+            'photo_directory' => '/img/photos/'
         ]);
 
     }

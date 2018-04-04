@@ -9,7 +9,9 @@
                 <img class="icon" :src="'../img/svg/grid-45.svg'">
             </a>
         </div>
-        <img :src="'../img/thumbnails/'+item.thumbnail" class="overviewImage">
+        <div class="overviewImageMask">
+            <img :src="imageDirectory+item.image" class="overviewImage">
+        </div>
         <modal v-if="showModal" @close="showModal = false">
             <h3 slot="header">{{item.slug}}</h3>
             <div slot="body">
@@ -32,7 +34,8 @@
         },
         data:function() {
             return {
-                showModal: false
+                showModal: false,
+                imageDirectory: imageDirectory,
             }
         },
         props: {
@@ -52,6 +55,20 @@
 </script>
 
 <style>
+    .overviewImageMask {
+        display: flex;
+        flex-flow: column nowrap;
+        align-content: center;
+        justify-content: center;
+        width: 300px;
+        height: 200px;
+        overflow: hidden;
+        margin: 4px 0;
+    }
+
+    .overviewImage {
+        width: 100%;
+    }
 
     .hovertext{
         opacity: 0;

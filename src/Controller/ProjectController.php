@@ -68,6 +68,7 @@ class ProjectController extends Controller
         return $this->render('admin/adminProjects.html.twig', [
             'projects' => $jsonProjects,
             'form' => $form->createView(),
+            'thumbnail_directory' => '/img/thumbnails/'
         ]);
 
     }

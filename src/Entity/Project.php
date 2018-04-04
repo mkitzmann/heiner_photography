@@ -37,7 +37,7 @@ class Project
      * @ORM\Column(type="string")
      * @var string
      */
-    private $thumbnail;
+    private $image;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="project")
@@ -93,17 +93,17 @@ class Project
     /**
      * @return string
      */
-    public function getThumbnail()
+    public function getImage()
     {
-        return $this->thumbnail;
+        return $this->image;
     }
 
     /**
      * @param string $thumbnail
      */
-    public function setThumbnail($thumbnail)
+    public function setImage($image)
     {
-        $this->thumbnail = $thumbnail;
+        $this->image = $image;
 
     }
 

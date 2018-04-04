@@ -14,7 +14,7 @@ class TypeConverter
     {
         $encoders = array(new XmlEncoder(), new JsonEncoder());
         $normalizer = new ObjectNormalizer();
-        $normalizer->setIgnoredAttributes(array('photos'));
+        $normalizer->setIgnoredAttributes(array('photos','project'));
         $normalizers = array($normalizer);
 
         $serializer = new Serializer($normalizers, $encoders);
