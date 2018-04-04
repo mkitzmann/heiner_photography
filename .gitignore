@@ -2,7 +2,6 @@
 ###> symfony/framework-bundle ###
 .env*
 /public/bundles/
-/public/img/
 /var/
 /vendor/
 /node_modules/
