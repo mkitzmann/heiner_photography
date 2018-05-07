@@ -26,6 +26,12 @@ class Photo
      */
     private $title;
 
+        /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    private $archiveId;
+
     /**
      * @Gedmo\Slug(fields={"title"})
      * @ORM\Column(length=128, unique=true)
@@ -102,6 +108,22 @@ class Photo
     public function setTitle(string $title)
     {
         $this->title = $title;
+    }
+
+        /**
+     * @return string
+     */
+    public function getArchiveId()
+    {
+        return $this->archiveId;
+    }
+
+    /**
+     * @param string $archiveId
+     */
+    public function setArchiveId(string $title)
+    {
+        $this->title = $archiveId;
     }
 
     /**

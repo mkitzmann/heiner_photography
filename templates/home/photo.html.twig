@@ -11,8 +11,8 @@
         <div id="info" class="overlay">
             <a class="close-overlay" href="#"></a>
             <div class="popup">
-                <h2>{{ photo.title }}</h2>
-                <h3>{{ photo.location }} | {{ photo.year }}</h3>
+                <h2>{{ photo.title }} / {{ photo.year }}</h2>
+                <h3>{{ photo.archiveId }}</h3>
                 <a class="close" href="#">&times;</a>
                 <div class="popup-content">
                     {{ photo.text }}
@@ -20,6 +20,11 @@
                 <div class="popup-price">
                     {{ photo.priceDescription }}<div class="right">{{ photo.price }} €</div>
                 </div>
+                <div class="popup-copyright">
+                    Photograph and Copyright © by HEINER LEISKA<br>
+                    Not to be reproduced in any form without written permission of the photographer
+                </div>
+                
             </div>
         </div>
 
