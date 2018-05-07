@@ -58,6 +58,10 @@ body {
     color: $light-grey;
 }
 
+.nc-icon-wrapper {
+    fill: $light-grey;
+}
+
 .content {
 //border: 1px solid blue;
 //   position:relative;
@@ -363,6 +367,10 @@ nav a:hover{
         .content#overview {
             align-items: flex-start;
         }
+        .popup {
+            margin: 25vh auto;
+            width: 80vw;
+        }
 }
 
 @media all and
@@ -379,6 +387,10 @@ nav a:hover{
     .content#overview {
         align-items: flex-start;
         padding-top: 3vh;
+    }
+    .popup {
+        margin: 10vh auto;
+        width: 80vw;
     }
 }
 
