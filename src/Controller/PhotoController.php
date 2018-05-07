@@ -72,9 +72,13 @@ class PhotoController extends Controller
     {
         $prevNextPhoto = $photoPosition->adjacentPhotos($project, $photo);
 
+        $projectPhotos = $project->getPhotos();
+        $photoCount = count($projectPhotos);
+
         return $this->render('home/photo.html.twig',array(
             'photo' => $photo,
             'project' => $project,
+            'photoCount' => $photoCount,
             'nextphoto' => $prevNextPhoto["next"],
             'prevPhoto' => $prevNextPhoto["prev"]));
     }
@@ -96,9 +100,13 @@ class PhotoController extends Controller
         }else{
             $prevNextPhoto = $photoPosition->adjacentPhotos($project, $photo);
 
+            $projectPhotos = $project->getPhotos();
+            $photoCount = count($projectPhotos);
+            
             return $this->render('home/photo.html.twig',array(
                 'photo' => $photo,
                 'project' => $project,
+                'photoCount' => $photoCount,
                 'nextphoto' => $prevNextPhoto["next"],
                 'prevPhoto' => $prevNextPhoto["prev"]));
         }
