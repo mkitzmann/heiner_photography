@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'TSTAR-Italic';
+  src: url('TSTAR-Italic.eot');
+  src: url('TSTAR-Italic.woff2') format('woff2'),
+       url('TSTAR-Italic.woff') format('woff'),
+       url('TSTAR-Italic.ttf') format('truetype'),
+       url('TSTAR-Italic.svg#TSTAR-Italic') format('svg'),
+       url('TSTAR-Italic.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

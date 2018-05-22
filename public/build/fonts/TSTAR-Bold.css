@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'TSTAR-Bold';
+  src: url('TSTAR-Bold.eot');
+  src: url('TSTAR-Bold.woff2') format('woff2'),
+       url('TSTAR-Bold.woff') format('woff'),
+       url('TSTAR-Bold.ttf') format('truetype'),
+       url('TSTAR-Bold.svg#TSTAR-Bold') format('svg'),
+       url('TSTAR-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+

@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'TSTAR-Regular';
+  src: url('TSTAR-Regular.eot');
+  src: url('TSTAR-Regular.woff2') format('woff2'),
+       url('TSTAR-Regular.woff') format('woff'),
+       url('TSTAR-Regular.ttf') format('truetype'),
+       url('TSTAR-Regular.svg#TSTAR-Regular') format('svg'),
+       url('TSTAR-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
