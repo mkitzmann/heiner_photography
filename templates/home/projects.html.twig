@@ -5,7 +5,9 @@
         <div class="container" id="overview">
             {% for project in projects %}
                 <a href="{{ path('GalleryRoute', {'project_slug': project.slug}) }}">
+                <div class="project-wrapper">
                     <img  class="grid" src="{{ asset('img/thumbnails/' ~ project.image) }}" class="overviewImage">
+                    </div>
                 </a>
             {% endfor %}
 

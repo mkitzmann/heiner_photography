@@ -40,11 +40,11 @@ body {
     //border: 1px solid red;
     position: fixed;
     height: 100vh;
-    width: 300px;
+    width: 30vw;
     min-width: 250px;
     display: flex;
     align-items: center;
-    padding-left: 30px;
+    padding-left: 3vw;
     background: #fff;
 }
 
@@ -65,7 +65,7 @@ body {
 .content {
 //border: 1px solid blue;
 //   position:relative;
-    margin-left: 300px;
+    margin-left: 18vw;
     margin-right: 3vw;
     max-height: 100%;
     overflow: auto;
@@ -76,6 +76,11 @@ body {
     box-flex: 1;
     display: flex;
     align-content: center;
+    @media all and
+    (max-width: 1100px) and
+    (orientation:landscape)  {
+        margin-left: 28vw;
+    }
 }
 
 .content#single{
@@ -86,10 +91,22 @@ body {
     align-items: center;
 }
 
-.container{
+.container#overview{
     position: relative;
     width: 1000px;
     text-align: left;
+    columns: 200px 3;
+}
+
+.project-wrapper {
+    display: inline;
+    height: 100%;
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        margin: 1rem 1rem 0 0;
+        zoom: 2;
+    }
 }
 
 .container#single {
@@ -195,7 +212,7 @@ a.gallery-prev {
 */
 
 .logo {
-   height: 1.5rem;
+   height: 1.2rem;
 }
 
 span.bold {
@@ -206,12 +223,13 @@ nav {
     font-weight: 200;
     margin-top: 50px;
     z-index: 0;
+    font-size: 0.9rem;
 }
 
 nav a{
     color: #000;
     display: block;
-    padding-bottom: 20px;
+    padding-bottom: 1rem;
 }
 
 nav a.active {
@@ -332,8 +350,8 @@ nav a:hover{
     .sidebar{
         height: 20vh;
         width: 100vw;
-        padding-left: 4vw;
-        padding-top: 2vh;
+        padding-left: 8vw;
+        padding-top: 3vh;
         z-index: 1;
     }
     .content{
@@ -348,16 +366,16 @@ nav a:hover{
         width: 100vw;
         max-width: 1000px;
         text-align: left;
-        padding-left: 4vw;
-        padding-right: 4vw;
+        padding-left: 8vw;
+        padding-right: 8vw;
     }
     .container#overview{
         //border: 1px solid blue;
         width: 100vw;
         max-width: 1000px;
         text-align: left;
-        padding-left: 4vw;
-        padding-right: 4vw;
+        padding-left: 8vw;
+        padding-right: 8vw;
     }
     .sideinfo {
         position: fixed;
@@ -372,18 +390,17 @@ nav a:hover{
 }
 
 @media all and
-    (max-width: 643px) and
+    (max-width: 500px) and
     (orientation:portrait)  {
         .content#overview {
             align-items: flex-start;
+            margin-top: 22vh;
         }
         .popup {
             width: 100vw;
             margin: 0 4vw;
         }
-        img.grid{
-            width: 100%;
-        }
+
 }
 
 @media all and
