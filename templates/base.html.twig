@@ -9,10 +9,10 @@
         {% endblock %}
 
         {% block fonts %}
-        <link href="{{ asset('build/fonts/TSTAR-Bold.css') }}" rel="stylesheet">
-        <link href="{{ asset('build/fonts/TSTAR-Regular.css') }}" rel="stylesheet">
-        <link href="{{ asset('build/fonts/TSTAR-Heavy.css') }}" rel="stylesheet">
-        <link href="{{ asset('build/fonts/TSTAR-Italic.css') }}" rel="stylesheet">
+        <link href="{{ asset('/fonts/TSTAR-Bold.css') }}" rel="stylesheet">
+        <link href="{{ asset('/fonts/TSTAR-Regular.css') }}" rel="stylesheet">
+        <link href="{{ asset('/fonts/TSTAR-Heavy.css') }}" rel="stylesheet">
+        <link href="{{ asset('/fonts/TSTAR-Italic.css') }}" rel="stylesheet">
         {% endblock %}
 
         {% block meta %}
@@ -29,7 +29,7 @@
     {% block sidebar %}
         <div class="sidebar">
             <div class="navigation">
-                <a href="{{ path('IndexRoute') }}" class="logo">HEINER <span class="bold">LEISKA</span></a>
+                <a href="{{ path('IndexRoute') }}" class="logo"><img src="{{ asset('img/heinerleiska-logo.svg') }}" class="logo"></a>
                 <nav class="main">
                     <a href="
                         {{ path('ProjectsRoute') }}"
