@@ -28,8 +28,7 @@ class PhotoController extends Controller
 
         return $this->render('admin/adminPhotos.html.twig', [
             'photos' => $jsonPhotos,
-            'form' => $form->createView(),
-            'photo_directory' => '/img/photos/'
+            'form' => $form->createView()
         ]);
 
     }

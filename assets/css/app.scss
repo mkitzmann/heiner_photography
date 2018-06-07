@@ -128,7 +128,7 @@ body {
     grid-template-columns: auto auto auto;
     grid-gap: 1rem;
     //position: relative;
-    width: 1000px;
+    width: 900px;
     //text-align: left;
     //columns: 250px 3;
     ///column-gap: 1rem;
@@ -214,6 +214,15 @@ input[type=file] {
 }
 
 /* Set a style for all buttons */
+button {
+        background-color: #ccc;
+        font-size: 0.8em;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+}
 
 button.btn-full-width {
     background-color: #ccc;
@@ -338,8 +347,7 @@ nav a:hover {
     margin: 0 auto;
     padding: 20px;
     background: #fff;
-    width: 800px;
-    max-width: 100%;
+    max-width: 800px;
     max-height: 100%;
     overflow: scroll;
     position: relative;
@@ -441,9 +449,6 @@ nav a:hover {
         padding-right: 8vw;
     }
     .container#overview {
-        //border: 1px solid blue;
-        width: 100vw; //max-width: 1000px;
-        text-align: left;
     }
     .sideinfo {
         position: fixed;

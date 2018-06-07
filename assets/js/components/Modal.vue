@@ -1,8 +1,7 @@
 <template>
     <transition name="modal">
         <div class="modal-mask" @click="close">
-            <div class="modal-wrapper">
-                <div class="modal-container" @click.stop>
+                <div class="popup" @click.stop>
 
                     <div class="modal-header">
                         <slot name="header">
@@ -27,7 +26,6 @@
                             Save Project
                         </button>
                     </div>
-                </div>
             </div>
         </div>
     </transition>

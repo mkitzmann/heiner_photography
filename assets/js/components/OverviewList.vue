@@ -13,12 +13,13 @@
 
             <listitem :item="item"/>
         </div>
-    </draggable>
-    <div class="overviewImageContainer ignore-elements">
+        <div class="overviewImageContainer ignore-elements">
         <div class="add-project-wrapper">
             <a href="#add" class="add-project-link">+</a>
         </div>
     </div>
+    </draggable>
+    
 </div>
 </template>
 

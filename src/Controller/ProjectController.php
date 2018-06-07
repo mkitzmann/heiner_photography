@@ -57,6 +57,8 @@ class ProjectController extends Controller
 
     public function adminProjects(Request $request, FileUploader $fileUploader, TypeConverter $typeConverter)
     {
+        $em = $this->getDoctrine()->getManager();
+        
         $projectRepo = $this->getDoctrine()->getRepository(Project::class);
         $projects = $projectRepo->findAll();
 
@@ -65,10 +67,31 @@ class ProjectController extends Controller
         $project = new Project();
         $form = $this->createForm(ProjectType::class, $project);
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump(count($projects)+1);
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $project->getImage();
+            $directory = $this->getParameter('thumbnail_directory');
+            $fileName = $fileUploader->upload($file, $directory);
+            $project->setImage($fileName);
+            $project->setPosition(count($projects)+1);
+
+            $title = $project->getTitle();
+            $slugify = new Slugify();
+            $project->setSlug($slugify->slugify($title));
+
+            $em->persist($project);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('AdminProjectsRoute'));
+        }
+
         return $this->render('admin/adminProjects.html.twig', [
             'projects' => $jsonProjects,
             'form' => $form->createView(),
-            'thumbnail_directory' => '/img/thumbnails/'
+
         ]);
 
     }
