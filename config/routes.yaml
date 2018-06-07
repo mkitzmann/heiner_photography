@@ -37,3 +37,8 @@ AdminProjectsPositionRoute:
 AdminPhotosRoute:
     path: /admin/projects/{project_slug}
     defaults: { _controller: 'App\Controller\PhotoController::adminPhotos' }
+
+project_delete:
+    path:     /admin/project/{id}
+    defaults: { _controller: App\Controller\ProjectController::deleteProject }
+    methods:  [DELETE]

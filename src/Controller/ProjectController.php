@@ -60,7 +60,7 @@ class ProjectController extends Controller
         $em = $this->getDoctrine()->getManager();
         
         $projectRepo = $this->getDoctrine()->getRepository(Project::class);
-        $projects = $projectRepo->findAll();
+        $projects = $projectRepo->findAll(['position' => 'ASC']);
 
         $jsonProjects = $typeConverter->jsonConvert($projects);
 
@@ -103,9 +103,25 @@ class ProjectController extends Controller
             return new Response('Position of project with id ' . $project->getId() . ' is already position ' . $position);
         } else {
             return new Response($projectPosition->changePosition($project, $position));
+        }
+    }
 
+    public function deleteProject(Project $project){
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $id = $project->getId();
+        $entityManager->remove($project);
+
+        $projects = $entityManager->getRepository(Project::class)->findAll(['position' => 'ASC']);
+        $i=1;
+        foreach ($projects as $singleProject) {
+            $singleProject->setPosition($i);
+            $i++;
         }
 
+        $entityManager->flush();
+        return new Response('Project with id ' . $id . ' was deleted');
     }
+
 
 }

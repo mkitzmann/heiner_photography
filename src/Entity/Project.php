@@ -40,7 +40,7 @@ class Project
     private $image;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="App\Entity\Photo", mappedBy="project", orphanRemoval=true)
      */
     private $photos;
 

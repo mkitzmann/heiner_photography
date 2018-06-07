@@ -16,14 +16,11 @@
                     </div>
 
                     <div class="modal-footer">
+                        <slot name="footer">
+                            default footer
+                        </slot>
                         <button class="modal-default-button" @click="$emit('close')">
                             Cancel
-                        </button>
-                        <button class="modal-default-button modal-delete-button" @click="$emit('close')">
-                            Delete Project
-                        </button>
-                        <button class="modal-default-button" @click="$emit('close')">
-                            Save Project
                         </button>
                     </div>
             </div>
@@ -94,6 +91,10 @@
 
     .modal-delete-button {
         background-color: #d54;
+    }
+
+        .modal-save-button {
+        background-color: #222;
     }
 
 

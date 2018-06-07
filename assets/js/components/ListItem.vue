@@ -20,6 +20,14 @@
                     <div><label for="project_thumbnail" class="required">Thumbnail (Image file)</label><input type="file" id="project_thumbnail" name="project[thumbnail]" required="required"></div>
                     </form>
             </div>
+            <span slot="footer">
+                        <button class="modal-default-button modal-save-button" @click="$emit('close')">
+                            Save Project
+                        </button>
+                        <button class="modal-default-button modal-delete-button" @click="delete_project(item.id)">
+                            Delete Project
+                        </button>
+            </span>
 
         </modal>
     </div>
@@ -27,6 +35,7 @@
 
 <script>
     import modal from './Modal.vue'
+    import axios from 'axios'
 
     export default {
         components: {
@@ -36,6 +45,25 @@
             return {
                 showModal: false,
                 imageDirectory: imageDirectory,
+            }
+        },
+        methods: {
+            delete_project: function(id) {                
+                var r = confirm("Do your really want to delete this project and all included photos?");
+                if (r == true) {
+                    console.log( 'delete element with id '+id);
+                  axios.delete('project/'+id)
+                        .then(function (response) {
+                            console.log(response);
+                        })
+                        .catch(function (error) {
+                            console.log(error.message);
+                        });
+                } else {
+                  
+                }
+                
+
             }
         },
         props: {
