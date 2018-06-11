@@ -4,6 +4,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use App\Service\FileUploader;
 use App\Service\PhotoPositioner;
 use App\Service\TypeConverter;
@@ -134,6 +135,14 @@ class PhotoController extends Controller
                 'prevPhoto' => $prevNextPhoto["prev"]));
         }
 
+    }
+    public function updatePosition(photo $photo, $position, PhotoPositioner $photoPosition)
+    {
+        if ($photo->getPosition() == $position) {
+            return new Response('Position of project with id ' . $project->getId() . ' is already position ' . $position);
+        } else {
+            return new Response($photoPosition->changePosition($photo, $position));
+        }
     }
     
 }
