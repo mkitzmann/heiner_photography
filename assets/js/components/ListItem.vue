@@ -15,14 +15,30 @@
         </div>
         <modal v-if="showModal" @close="showModal = false">
             <h3 slot="header">{{item.slug}}</h3>
-            <div slot="body">
+            <div slot="body" v-if="type == 'projects'">
                 <form name="project" method="post" enctype="multipart/form-data">
                     <div><label for="project_title" class="required">Title</label><input type="text" id="project_title" name="project[title]" required="required" :value="item.slug"></div>
                     <div><label for="project_thumbnail" class="required">Thumbnail (Image file)</label><input type="file" id="project_thumbnail" name="project[thumbnail]" required="required"></div>
                     </form>
             </div>
+
+            <div slot="body" v-if="type == 'photos'">
+                <form name="photo" method="post" enctype="multipart/form-data">
+
+                <div><label for="photo_title" class="required">Title</label>
+                <input type="text" id="photo_title" name="photo[title]" required="required" :value="item.title"/></div>
+                <div><label for="photo_archive_id" class="required">Archive ID</label><input type="text" id="photo_archive_id" name="photo[archive_id]" required="required" :value="item.archiveId"/></div>
+                <div><label for="photo_text">Text</label><input type="text" id="photo_text" name="photo[text]" :value="item.text"/></div>
+                <div><label for="photo_location">Location</label><input type="text" id="photo_location" name="photo[location]" :value="item.location"/></div>
+                <div><label for="photo_year">Year</label><input type="number" id="photo_year" name="photo[year]" :value="item.year"/></div>
+                <div><label for="photo_price">Price</label>€ <input type="text" id="photo_price" name="photo[price]" :value="item.price"/></div>
+                <div><label for="photo_pricedescription">Price Description</label><input type="text" id="photo_pricedescription" name="photo[pricedescription]" :value="item.priceDescription"/></div>
+                <div><label for="photo_image" class="required">Photo (Image file)</label><input type="file" id="photo_image" name="photo[image]" required="required"/></div>
+                <input type="hidden" id="photo__token" name="photo[_token]" value="P7sIA0G85wr_36hN8Klhm-9jtnE0N2CItGcpNqEtzQo" /></form>
+            </div>
+
             <span slot="footer">
-                        <button class="modal-default-button modal-save-button" @click="$emit('close')" v-if="type == 'projects'">
+                        <button class="modal-default-button modal-save-button" @click="update_project(item)" v-if="type == 'projects'">
                             Save Project
                         </button>
                         <button class="modal-default-button modal-save-button" @click="$emit('close')" v-if="type == 'photos'">
@@ -74,6 +90,17 @@
                 
 
             },
+            update_project: function(item) {
+                console.log(item);
+                axios.post('/admin/projects/'+item.id+'edit')
+                        .then(function (response) {
+                            console.log(response);
+                            //location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error.message);
+                        });
+                },
             delete_photo: function(id) {                
                 var r = confirm("Do your really want to delete this photo?");
                 if (r == true) {

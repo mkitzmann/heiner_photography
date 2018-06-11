@@ -51,3 +51,13 @@ photo_delete:
     path:     /admin/photo/{id}
     defaults: { _controller: App\Controller\PhotoController::delete }
     methods:  [DELETE]
+
+photo_update:
+    path:     /admin/photo/{id}/edit
+    defaults: { _controller: App\Controller\PhotoController::edit }
+    methods:  [POST]
+
+project_update:
+    path:     /admin/project/{id}/edit
+    defaults: { _controller: App\Controller\ProjectController::edit }
+    methods:  [POST]
