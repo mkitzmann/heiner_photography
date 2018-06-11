@@ -36,6 +36,7 @@
         data:function() {
             return {
                 items: twigProjects,
+                type: type,
                 imageDirectory: imageDirectory,
             }
         },
@@ -44,9 +45,9 @@
                 if(item.newIndex === item.oldIndex){
                     console.log('element position was not changed');
                 }else{
-                    console.log( 'moved element with id '+item.clone.id+' to position '+(item.newIndex+1) );
+                    console.log( 'moved '+type+' with id '+item.clone.id+' to position '+(item.newIndex+1) );
 
-                    axios.post('projects/'+item.clone.id+'/position/'+(item.newIndex+1))
+                    axios.post('/admin/'+type+'/'+item.clone.id+'/position/'+(item.newIndex+1))
                         .then(function (response) {
                             console.log(response);
                         })

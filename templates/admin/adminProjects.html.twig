@@ -3,7 +3,8 @@
         {% block scripts %}
             <script type="text/javascript">
                 //window.__INITIAL_STATE__ = '{ "projects": {{ projects|raw }} }';
-                var twigProjects = JSON.parse('{{ projects|raw }}')
+                var twigProjects = JSON.parse('{{ projects|raw }}');
+                var type = "projects";
                 var imageDirectory = '{{ thumbnail_directory|raw }}';
             </script>
         {% endblock %}

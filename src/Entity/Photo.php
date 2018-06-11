@@ -121,9 +121,9 @@ class Photo
     /**
      * @param string $archiveId
      */
-    public function setArchiveId(string $title)
+    public function setArchiveId(string $archiveId)
     {
-        $this->title = $archiveId;
+        $this->archiveId = $archiveId;
     }
 
     /**

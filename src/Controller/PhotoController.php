@@ -25,6 +25,30 @@ class PhotoController extends Controller
         $jsonPhotos = $typeConverter->jsonConvert($photos);
         $photo = new photo();
         $form = $this->createForm(PhotoType::class, $photo);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $photo->getImage();
+            $directory = $this->getParameter('photo_directory');
+            $fileName = $fileUploader->upload($file, $directory);
+            $photo->setImage($fileName);
+            $photo->setPosition(count($photos)+1);
+            $photo->setProject($project);
+
+            $title = $photo->getTitle();
+            $slugify = new Slugify();
+            $photo->setSlug($slugify->slugify($title));
+
+            //var_dump($photo);
+            
+            $em->persist($photo);
+            $em->flush();
+
+            return $this->redirectToRoute('AdminPhotosRoute', array('project_slug' => $project->getSlug()));
+        }
 
         return $this->render('admin/adminPhotos.html.twig', [
             'photos' => $jsonPhotos,

@@ -3,8 +3,8 @@
         {% block scripts %}
             <script type="text/javascript">
                 var twigProjects = JSON.parse('{{ photos|raw }}');
+                var type = "photos";
                 var imageDirectory = '{{ photo_directory|raw }}';
-                console.log(imageDirectory);
             </script>
         {% endblock %}
 
@@ -15,6 +15,17 @@
             <div id="app"></div>
         </div>
 
+        <div id="add" class="overlay">
+        <a class="close-overlay" href="#"></a>
+        <div class="popup">
+            <a class="close" href="#">&times;</a>
+            <h1>Adding a new photo</h1>
+            <div class="popup-content">
+                {{ form_start(form) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

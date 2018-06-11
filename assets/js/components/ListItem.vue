@@ -5,7 +5,8 @@
             <a href="#edit" @click="showModal = true">
                 <img class="icon" :src="'../../img/svg/settings-gear-63.svg'">
             </a>
-            <a :href="'projects/'+item.slug">
+
+            <a :href="'projects/'+item.slug" v-if="type == 'projects'">
                 <img class="icon" :src="'../../img/svg/grid-45.svg'">
             </a>
         </div>
@@ -45,6 +46,7 @@
             return {
                 showModal: false,
                 imageDirectory: imageDirectory,
+                type: type
             }
         },
         methods: {
