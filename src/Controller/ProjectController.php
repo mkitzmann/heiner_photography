@@ -70,7 +70,6 @@ class ProjectController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump(count($projects)+1);
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $project->getImage();
             $directory = $this->getParameter('thumbnail_directory');
