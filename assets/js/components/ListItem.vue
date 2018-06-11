@@ -22,11 +22,17 @@
                     </form>
             </div>
             <span slot="footer">
-                        <button class="modal-default-button modal-save-button" @click="$emit('close')">
+                        <button class="modal-default-button modal-save-button" @click="$emit('close')" v-if="type == 'projects'">
                             Save Project
                         </button>
-                        <button class="modal-default-button modal-delete-button" @click="delete_project(item.id)">
+                        <button class="modal-default-button modal-save-button" @click="$emit('close')" v-if="type == 'photos'">
+                            Save Photo
+                        </button>
+                        <button class="modal-default-button modal-delete-button" @click="delete_project(item.id)" v-if="type == 'projects'">
                             Delete Project
+                        </button>
+                        <button class="modal-default-button modal-delete-button" @click="delete_photo(item.id)" v-if="type == 'photos'">
+                            Delete Photo
                         </button>
             </span>
 
@@ -57,6 +63,25 @@
                   axios.delete('project/'+id)
                         .then(function (response) {
                             console.log(response);
+                            location.reload();
+                        })
+                        .catch(function (error) {
+                            console.log(error.message);
+                        });
+                } else {
+                  
+                }
+                
+
+            },
+            delete_photo: function(id) {                
+                var r = confirm("Do your really want to delete this photo?");
+                if (r == true) {
+                    console.log( 'delete element with id '+id);
+                  axios.delete('/admin/photo/'+id)
+                        .then(function (response) {
+                            console.log(response);
+                            location.reload();
                         })
                         .catch(function (error) {
                             console.log(error.message);

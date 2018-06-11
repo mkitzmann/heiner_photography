@@ -46,3 +46,8 @@ project_delete:
     path:     /admin/project/{id}
     defaults: { _controller: App\Controller\ProjectController::deleteProject }
     methods:  [DELETE]
+
+photo_delete:
+    path:     /admin/photo/{id}
+    defaults: { _controller: App\Controller\PhotoController::delete }
+    methods:  [DELETE]

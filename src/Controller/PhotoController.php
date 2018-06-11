@@ -114,19 +114,18 @@ class PhotoController extends Controller
     {
         $photo = $this->getDoctrine()
             ->getRepository(Photo::class)
-            ->findOneBy([
-                'project' => $project->getId(),
-                'position' => 1,
-            ]);
+            ->findOneBy(['project' => $project],['position' => 'ASC']);
+
 
         if($photo == NULL){
+            
             throw $this->createNotFoundException('No Photos in Project '.$project->getTitle());
         }else{
             $prevNextPhoto = $photoPosition->adjacentPhotos($project, $photo);
 
             $projectPhotos = $project->getPhotos();
             $photoCount = count($projectPhotos);
-            
+            //var_dump($prevNextPhoto["prev"]);
             return $this->render('home/photo.html.twig',array(
                 'photo' => $photo,
                 'project' => $project,
@@ -143,6 +142,28 @@ class PhotoController extends Controller
         } else {
             return new Response($photoPosition->changePosition($photo, $position));
         }
+    }
+
+    public function delete(Photo $photo){
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $id = $photo->getId();
+        $project = $photo->getProject();
+        $entityManager->remove($photo);
+
+        $photoRepo = $entityManager->getRepository(Photo::class);
+        $photos = $photoRepo->findby(['project' => $project],['position' => 'ASC']);
+        
+        $i=1;
+        foreach ($photos as $item) {
+            $item->setPosition($i);
+            $i++;
+        }
+
+
+        $entityManager->flush();
+        //return new Response(var_dump($photos));
+        return new Response('Photo with id ' . $id . ' was deleted');
     }
     
 }
