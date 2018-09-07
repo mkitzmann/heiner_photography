@@ -36,11 +36,17 @@
                             {% endif %}>
                         Photographs</a>
                     <a href="
-                        {{ path('AboutRoute') }}"
+                        {{ path('AdminAboutRoute') }}"
                             {% if app.request.attributes.get( '_route' )
                                 starts with 'AboutRoute' %} class="active"
                             {% endif %}>
                         About</a>
+                    <a href="           
+                        {{ path('AdminBooksRoute') }}"
+                            {% if app.request.attributes.get( '_route' )
+                                starts with 'BooksRoute' %} class="active"
+                            {% endif %}>
+                        Books</a>
                 </nav>
             </div>
             {% block sideinfo %}{% endblock %}

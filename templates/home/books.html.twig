@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="content" id="overview">
+        <div class="container" id="overview">
+            {% for book in books %}
+                <a href="">
+                <div class="project-wrapper">
+                    <img  class="grid fadein" src="{{ thumbnail_directory ~ book.image }}" class="overviewImage">
+                    </div>
+                </a>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

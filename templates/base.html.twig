@@ -43,6 +43,12 @@
                                 starts with 'AboutRoute' %} class="active"
                             {% endif %}>
                         About</a>
+                    <a href="           
+                        {{ path('BooksRoute') }}"
+                            {% if app.request.attributes.get( '_route' )
+                                starts with 'BooksRoute' %} class="active"
+                            {% endif %}>
+                        Books</a>
                 </nav>
             </div>
             {% block sideinfo %}{% endblock %}
